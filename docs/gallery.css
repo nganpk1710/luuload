@@ -1,0 +1,102 @@
+/* =========================================================
+   Pinned vertical gallery
+   Layer 1: static fallback (mobile, JS off, reduced motion)
+   Layer 2: .is-pinned (added by JS on desktop only)
+   ========================================================= */
+
+:root {
+  --gallery-bg: #000;
+  --gallery-fg: #fff;
+  --gallery-gap-static: 4rem;
+  --gallery-gap-pinned: 30svh;
+  --gallery-card-w-pinned: min(42vw, 640px);
+  --gallery-card-w-static: min(100%, 560px);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Layer 1: static ---------- */
+
+.gallery__pin {
+  position: relative;
+  overflow: hidden;
+  perspective: 1400px;
+  background: var(--gallery-bg);
+}
+
+.gallery__track {
+  list-style: none;
+  margin: 0;
+  padding: 2rem clamp(1rem, 5vw, 6rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gallery-gap-static);
+}
+
+.card {
+  width: var(--gallery-card-w-static);
+  margin-left: var(--x, 0);
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.card figcaption {
+  margin-top: 0.75rem;
+  color: var(--gallery-fg);
+  font: 500 0.875rem/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---------- Layer 2: pinned (desktop, JS enabled, motion allowed) ---------- */
+
+.gallery.is-pinned .gallery__pin {
+  height: 100svh;
+}
+
+.gallery.is-pinned .gallery__track {
+  padding-top: 100svh;          /* card đi vào từ mép dưới */
+  padding-bottom: 50svh;        /* card cuối vẫn lên được giữa màn hình */
+  gap: var(--gallery-gap-pinned);
+  transform-style: preserve-3d; /* để rotateX và translateZ có hiệu ứng thật */
+  will-change: transform;
+}
+
+.gallery.is-pinned .card {
+  width: var(--gallery-card-w-pinned);
+  will-change: transform, opacity;
+}
+
+/* ---------- Reduced motion: giữ layout tĩnh dù class is-pinned có tồn tại ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery.is-pinned .gallery__pin {
+    height: auto;
+  }
+  .gallery.is-pinned .gallery__track {
+    padding: 2rem clamp(1rem, 5vw, 6rem);
+    gap: var(--gallery-gap-static);
+    transform: none !important;
+    transform-style: flat;
+    will-change: auto;
+  }
+  .gallery.is-pinned .card {
+    width: var(--gallery-card-w-static);
+    transform: none !important;
+    will-change: auto;
+  }
+}
