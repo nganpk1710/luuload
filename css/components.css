@@ -1,0 +1,220 @@
+/*
+ * css/components.css
+ * Atoms và blocks dùng chung: skip-link, header, logo, nav-item, button-cta.
+ * Mọi giá trị là token. Màu nền và màu chữ đổi ở --motion-fast (MOTION.md mục 2).
+ */
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-nav);
+  transform: translateY(-120%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+  outline-color: var(--color-focus-inverse);
+}
+
+/* Header */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--layout-margin) 0;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--menu-gap);
+  width: 100%;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nav-gap);
+}
+
+/* Logo */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--logo-gap);
+  padding: var(--logo-pad-y) var(--logo-pad-x);
+  background: var(--color-accent);
+  color: var(--color-primary);
+  border-radius: var(--radius-logo);
+  font-family: var(--font-display);
+  font-size: var(--fs-logo);
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.logo__mark {
+  flex: none;
+  width: var(--logo-mark-w);
+  height: var(--logo-mark-h);
+}
+
+.logo__mark img {
+  width: 100%;
+  height: 100%;
+}
+
+.logo__text {
+  display: block;
+  text-box: trim-both cap alphabetic;
+}
+
+/* Nav item (chip) */
+.nav-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--chip-h);
+  padding: 0 var(--chip-px);
+  background: var(--color-neutral-100);
+  color: var(--color-primary);
+  border-radius: var(--radius-chip);
+  font-family: var(--font-display);
+  font-size: var(--fs-nav);
+  line-height: normal;
+  white-space: nowrap;
+  transition: background-color var(--motion-fast) var(--ease-out);
+}
+
+.nav-item__text {
+  display: block;
+  text-box: trim-both cap alphabetic;
+}
+
+.nav-item[aria-current="page"] {
+  background: var(--color-accent);
+}
+
+@media (hover: hover) {
+  .nav-item:hover {
+    background: var(--color-accent);
+  }
+}
+
+.nav-item:focus-visible {
+  background: var(--color-accent);
+}
+
+/* Button CTA: khung chữ và knob đứng cạnh nhau (frame Figma). Chuyển động ở button-cta.js. */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cta-gap);
+  transition: transform var(--motion-press) var(--ease-out);
+}
+
+.cta[data-pressed] {
+  transform: scale(var(--cta-press-scale, 1));
+}
+
+.cta__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--cta-h);
+  min-width: var(--cta-w);
+  padding: 0 var(--cta-px);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border-radius: var(--radius-cta);
+  font-family: var(--font-display);
+  font-size: var(--fs-button);
+  line-height: normal;
+  white-space: nowrap;
+  transition:
+    background-color var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out);
+}
+
+.cta__text {
+  display: block;
+  text-box: trim-both cap alphabetic;
+}
+
+.cta__knob {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--knob-size);
+  height: var(--knob-size);
+  background: var(--color-accent);
+  color: var(--color-primary);
+  border-radius: var(--radius-pill);
+  transition:
+    background-color var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out);
+}
+
+.cta__arrow {
+  width: calc(var(--knob-size) * 0.4);
+  height: calc(var(--knob-size) * 0.4);
+}
+
+.cta[data-hover] .cta__label {
+  background: var(--color-red);
+  color: var(--color-on-red);
+}
+
+.cta[data-hover] .cta__knob {
+  background: var(--color-paper);
+  color: var(--color-red);
+}
+
+.cta[aria-disabled="true"] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .site-nav {
+    width: auto;
+    flex-wrap: nowrap;
+  }
+
+  .nav-list {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 1280px) {
+  .site-header {
+    flex-wrap: nowrap;
+    position: absolute;
+    top: var(--hdr-top);
+    left: var(--layout-margin);
+    right: var(--layout-margin);
+    z-index: 10;
+    padding: 0;
+  }
+}
+
+/* Chuyển động vào trang: nav và CTA chỉ fade (MOTION.md mục 4 bước 5). */
+.site-header.is-pending .site-nav {
+  opacity: 0;
+}
+
+.site-nav[data-reveal="fade"] {
+  transition: opacity var(--motion-base) var(--ease-out) var(--reveal-delay, 0ms);
+}

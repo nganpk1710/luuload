@@ -1,0 +1,270 @@
+/*
+ * css/tokens.css
+ * Giá trị thiết kế. Quy tắc sử dụng nằm ở docs/DESIGN_SYSTEM.md.
+ *
+ * Nguồn: Figma ALL-IN, frame Hero 1920 (2221:460) và 1440 (2295:270).
+ * get_variable_defs trả về rỗng cho cả hai frame (frame dùng màu và cỡ chữ thô,
+ * chưa gắn Figma Variables), nên giá trị lấy từ get_design_context.
+ * TODO(figma): gắn Variables vào frame rồi đồng bộ lại file này.
+ *
+ * Mobile-first. Mốc @media là literal vì var() không dùng được trong @media:
+ *   768px (tablet), 1280px (bố cục hai cột), 1440px (desktop).
+ * Từ 1440px trở lên mỗi token nội suy tuyến tính giữa giá trị frame 1440 và 1920,
+ * dừng ở 1920 (clamp). Từ 1280 đến 1439 token co theo viewport, dừng ở giá trị 1440.
+ * Dưới 1280: bố cục một cột, giá trị [ĐỀ XUẤT] (chưa có frame Figma).
+ */
+
+:root {
+  /* Màu: vai trò (DESIGN_SYSTEM.md mục 4) */
+  --color-primary: #0800b2;
+  --color-accent: #ffef00;
+  --color-red: #ba2016;
+  --color-mint: #4bffdf;
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-neutral-100: #f0f0f4;
+  --color-neutral-500: #787878; /* đường kẻ, không dùng làm chữ */
+
+  /* Chữ trên nền */
+  --color-on-primary: var(--color-paper);
+  --color-on-accent: #090ae0; /* Figma: chữ nút CTA, lệch 1 bước so với primary */
+  --color-on-red: var(--color-paper);
+
+  /* Focus */
+  --color-focus: var(--color-primary);
+  --color-focus-inverse: var(--color-accent);
+  --focus-width: 2px;
+  --focus-offset: 2px;
+
+  /* Font */
+  --font-display: "Vina Vit Lon", "Arial Black", sans-serif;
+  --font-body: "Aeonik", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fw-regular: 400;
+  --fw-medium: 500;
+
+  /* Khoảng cách */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Layout */
+  --layout-margin: 16px;
+  --layout-gutter: 16px;
+
+  /* Bo góc */
+  --radius-none: 0;
+  --radius-pill: 9999px; /* knob tròn */
+  --radius-logo: 8px;
+  --radius-chip: 8px;
+  --radius-cta: 6px;
+
+  /* Cỡ chữ. Mobile: [ĐỀ XUẤT] */
+  --fs-display: 44px;
+  --fs-eyebrow: 16px;
+  --fs-logo: 20px;
+  --fs-nav: 14px;
+  --fs-button: 16px;
+  --fs-lead: 18px;
+  --fs-lead-mark: 18px;
+  --lh-lead: 24px;
+  --lead-offset: 2px;
+  --fs-meta: 14px;
+  --fs-step: 12px;
+  --lh-step: 18px;
+  --fs-cat: 14px;
+  --fs-strip: 12px;
+
+  /* Header, logo, chip, CTA. Mobile: [ĐỀ XUẤT] */
+  --logo-pad-x: 16px;
+  --logo-pad-y: 8px;
+  --logo-gap: 6px;
+  --logo-mark-w: 40px;
+  --logo-mark-h: 16.5px;
+  --chip-h: 36px;
+  --chip-px: 12px;
+  --nav-gap: 8px;
+  --menu-gap: 16px;
+  --cta-h: 40px;
+  --cta-px: 24px;
+  --knob-size: 40px;
+  --cta-gap: 2px;
+
+  /* Hero: một cột. Mobile: [ĐỀ XUẤT] */
+  --stack-gap: 24px;
+  --lead-indent: 44px;
+  --lead-icon: 18px;
+  --list-gap: 24px;
+  --cat-gap: 12px;
+  --strip-gap: 12px;
+  --strip-gap-r: 12px;
+  --cta-w: 0px;
+  --h1-l2-left: 0px;
+  --mosaic-ratio: 862 / 424; /* tỉ lệ khối ghép của frame 1440, dùng khi bố cục một cột */
+}
+
+@media (min-width: 768px) {
+  :root {
+    /* Tablet. [ĐỀ XUẤT] */
+    --layout-margin: 32px;
+    --layout-gutter: 24px;
+    --fs-display: 84px;
+    --fs-eyebrow: 20px;
+    --fs-logo: 24px;
+    --fs-lead: 24px;
+    --fs-lead-mark: 24px;
+    --fs-meta: 16px;
+    --fs-step: 12px;
+    --fs-cat: 16px;
+    --fs-strip: 14px;
+    --logo-pad-x: 24px;
+    --logo-pad-y: 12px;
+    --logo-gap: 10px;
+    --logo-mark-w: 66px;
+    --logo-mark-h: 27.165px;
+    --lead-indent: 84px;
+    --lh-lead: 31px;
+    --lead-offset: 3px;
+    --lead-icon: 24px;
+    --stack-gap: 32px;
+    --cat-gap: 24px;
+    --strip-gap: 16px;
+    --strip-gap-r: 16px;
+    --radius-logo: 10px;
+    --radius-chip: 9.476px;
+    --radius-cta: 7.581px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    /* Laptop (1280 đến 1439). Bố cục như desktop, mọi kích thước co theo viewport, trần = giá trị frame 1440.
+       Chữ nhỏ có sàn 12px. [ĐỀ XUẤT] */
+    --layout-margin: 32px;
+  --hero-h: clamp(640px, 62.5vw, 900px);
+  --hdr-top: clamp(30.578px, 2.986vw, 43px);
+  --logo-pad-x: clamp(12.8px, 1.25vw, 18px);
+  --logo-pad-y: clamp(6.4px, 0.625vw, 9px);
+  --logo-gap: clamp(5.333px, 0.521vw, 7.5px);
+  --radius-logo: clamp(4.267px, 0.417vw, 6px);
+  --logo-mark-w: clamp(35.2px, 3.438vw, 49.5px);
+  --logo-mark-h: clamp(14.488px, 1.415vw, 20.374px);
+  --fs-logo: clamp(12.8px, 1.25vw, 18px);
+  --chip-h: clamp(28.444px, 2.778vw, 40px);
+  --chip-px: clamp(8.533px, 0.833vw, 12px);
+  --radius-chip: clamp(4.267px, 0.417vw, 6px);
+  --fs-nav: clamp(12px, 0.972vw, 14px);
+  --nav-gap: clamp(5.689px, 0.556vw, 8px);
+  --menu-gap: clamp(22.4px, 2.188vw, 31.5px);
+  --cta-h: clamp(28.444px, 2.778vw, 40px);
+  --cta-px: clamp(17.067px, 1.667vw, 24px);
+  --radius-cta: clamp(2.844px, 0.278vw, 4px);
+  --fs-button: clamp(14px, 1.111vw, 16px);
+  --knob-size: clamp(28.444px, 2.778vw, 40px);
+  --cta-gap: clamp(1.422px, 0.139vw, 2px);
+  --mosaic-top: clamp(104.533px, 10.208vw, 147px);
+  --mosaic-w: clamp(612.978px, 59.861vw, 862px);
+  --mosaic-h: clamp(301.511px, 29.444vw, 424px);
+  --right-left: clamp(690.489px, 67.431vw, 971px);
+  --right-w: clamp(310.756px, 30.347vw, 437px);
+  --loc-top: clamp(104.533px, 10.208vw, 147px);
+  --fs-meta: clamp(12px, 0.972vw, 14px);
+  --sub-top: clamp(228.978px, 22.361vw, 322px);
+  --lead-w: clamp(310.756px, 30.347vw, 437px);
+  --fs-lead: clamp(14px, 1.111vw, 16px);
+  --lead-indent: clamp(44.8px, 4.375vw, 63px);
+  --lh-lead: clamp(16.533px, 1.6146vw, 23.25px);
+  --lead-offset: clamp(1.6px, 0.15625vw, 2.25px);
+  --fs-lead-mark: clamp(12.8px, 1.25vw, 18px);
+  --lead-icon: clamp(12.8px, 1.25vw, 18px);
+  --lead-sub-h: clamp(27.2px, 2.656vw, 38.25px);
+  --list-gap: clamp(33.6px, 3.281vw, 47.25px);
+  --list-w: clamp(149.333px, 14.583vw, 210px);
+  --fs-step: clamp(12px, 0.625vw, 9px);
+  --lh-step: calc(var(--fs-step) * 1.5);
+  --fs-cat: clamp(12px, 0.833vw, 12px);
+  --cat-gap: clamp(17.067px, 1.667vw, 24px);
+  --cat-w: clamp(66.667px, 6.51vw, 93.75px);
+  --fs-eyebrow: clamp(16px, 1.389vw, 20px);
+  --eyebrow-top: clamp(476.444px, 46.528vw, 670px);
+  --fs-display: clamp(56px, 6.944vw, 100px);
+  --h1-l1-left: clamp(189.867px, 18.542vw, 267px);
+  --h1-l1-top: clamp(477.803px, 46.66vw, 671.91px);
+  --h1-l2-top: clamp(545.579px, 53.279vw, 767.22px);
+  --fs-strip: clamp(12px, 0.833vw, 12px);
+  --strip-top: clamp(590.044px, 57.622vw, 829.75px);
+  --strip-gap: clamp(10.667px, 1.042vw, 15px);
+  --strip-gap-r: clamp(12px, 1.25vw, 18px);
+  --cta-w: clamp(98px, 9.583vw, 138px);
+  --h1-l2-left: clamp(409.6px, 40vw, 576px);
+  --strip-line-w: clamp(194.133px, 18.958vw, 273px);
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    /* Desktop. Nội suy giữa frame 1440 và frame 1920. */
+  --hero-h: 900px;
+  --hdr-top: clamp(32px, calc(43px + (100vw - 1440px) * -0.02292), 43px);
+  --logo-pad-x: clamp(18px, calc(18px + (100vw - 1440px) * 0.0125), 24px);
+  --logo-pad-y: clamp(9px, calc(9px + (100vw - 1440px) * 0.00625), 12px);
+  --logo-gap: clamp(7.5px, calc(7.5px + (100vw - 1440px) * 0.00521), 10px);
+  --radius-logo: clamp(6px, calc(6px + (100vw - 1440px) * 0.00833), 10px);
+  --logo-mark-w: clamp(49.5px, calc(49.5px + (100vw - 1440px) * 0.03438), 66px);
+  --logo-mark-h: clamp(20.374px, calc(20.374px + (100vw - 1440px) * 0.01415), 27.165px);
+  --fs-logo: clamp(18px, calc(18px + (100vw - 1440px) * 0.0125), 24px);
+  --chip-h: clamp(32px, calc(40px + (100vw - 1440px) * -0.01667), 40px);
+  --chip-px: clamp(12px, calc(12px + (100vw - 1440px) * 0.00833), 16px);
+  --radius-chip: clamp(6px, calc(6px + (100vw - 1440px) * 0.00724), 9.476px);
+  --fs-nav: clamp(14px, calc(14px + (100vw - 1440px) * 0.00242), 15.162px);
+  --nav-gap: clamp(8px, calc(8px + (100vw - 1440px) * 0.01667), 16px);
+  --menu-gap: clamp(31.5px, calc(31.5px + (100vw - 1440px) * 0.02187), 42px);
+  --cta-h: 40px;
+  --cta-px: 24px;
+  --radius-cta: clamp(4px, calc(4px + (100vw - 1440px) * 0.00746), 7.581px);
+  --fs-button: 16px;
+  --knob-size: 40px;
+  --cta-gap: clamp(1.895px, calc(2px + (100vw - 1440px) * -0.00022), 2px);
+  --mosaic-top: clamp(132.61px, calc(147px + (100vw - 1440px) * -0.02998), 147px);
+  --mosaic-w: clamp(862px, calc(862px + (100vw - 1440px) * 0.62083), 1160px);
+  --mosaic-h: clamp(420.784px, calc(424px + (100vw - 1440px) * -0.0067), 424px);
+  --right-left: clamp(971px, calc(971px + (100vw - 1440px) * 0.66042), 1288px);
+  --right-w: clamp(437px, calc(437px + (100vw - 1440px) * 0.32708), 594px);
+  --loc-top: clamp(124.66px, calc(147px + (100vw - 1440px) * -0.04654), 147px);
+  --fs-meta: clamp(14px, calc(14px + (100vw - 1440px) * 0.00417), 16px);
+  --sub-top: clamp(222px, calc(322px + (100vw - 1440px) * -0.20833), 322px);
+  --lead-w: clamp(437px, calc(437px + (100vw - 1440px) * 0.36458), 612px);
+  --fs-lead: clamp(16px, calc(16px + (100vw - 1440px) * 0.01667), 24px);
+  --lead-indent: clamp(63px, calc(63px + (100vw - 1440px) * 0.04375), 84px);
+  --lh-lead: clamp(23.25px, calc(23.25px + (100vw - 1440px) * 0.01615), 31px);
+  --lead-offset: clamp(2.25px, calc(2.25px + (100vw - 1440px) * 0.00156), 3px);
+  --fs-lead-mark: clamp(18px, calc(18px + (100vw - 1440px) * 0.0125), 24px);
+  --lead-icon: clamp(18px, calc(18px + (100vw - 1440px) * 0.0125), 24px);
+  --lead-sub-h: clamp(38.25px, calc(38.25px + (100vw - 1440px) * 0.02656), 51px);
+  --list-gap: clamp(47.25px, calc(47.25px + (100vw - 1440px) * 0.03281), 63px);
+  --list-w: clamp(210px, calc(210px + (100vw - 1440px) * 0.14583), 280px);
+  --fs-step: clamp(9px, calc(9px + (100vw - 1440px) * 0.00625), 12px);
+  --lh-step: clamp(13.5px, calc(13.5px + (100vw - 1440px) * 0.00937), 18px);
+  --fs-cat: clamp(12px, calc(12px + (100vw - 1440px) * 0.00833), 16px);
+  --cat-gap: clamp(24px, calc(24px + (100vw - 1440px) * 0.01667), 32px);
+  --cat-w: clamp(93.75px, calc(93.75px + (100vw - 1440px) * 0.0651), 125px);
+  --fs-eyebrow: clamp(20px, calc(20px + (100vw - 1440px) * 0.00833), 24px);
+  --eyebrow-top: clamp(638px, calc(670px + (100vw - 1440px) * -0.06667), 670px);
+  --fs-display: clamp(100px, calc(100px + (100vw - 1440px) * 0.08333), 140px);
+  --h1-l1-left: clamp(267px, calc(267px + (100vw - 1440px) * 0.22292), 374px);
+  --h1-l1-top: clamp(638px, calc(671.91px + (100vw - 1440px) * -0.07065), 671.91px);
+  --h1-l2-top: clamp(767.22px, calc(767.22px + (100vw - 1440px) * 0.00058), 767.5px);
+  --fs-strip: clamp(12px, calc(12px + (100vw - 1440px) * 0.00833), 16px);
+  --strip-top: clamp(829.75px, calc(829.75px + (100vw - 1440px) * 0.04427), 851px);
+  --strip-gap: clamp(15px, calc(15px + (100vw - 1440px) * 0.01042), 20px);
+  --strip-gap-r: clamp(18px, calc(18px + (100vw - 1440px) * 0.01458), 25px);
+  --cta-w: clamp(138px, calc(138px + (100vw - 1440px) * 0.03542), 155px);
+  --h1-l2-left: clamp(576px, calc(576px + (100vw - 1440px) * 0.32875), 733.78px);
+  --strip-line-w: clamp(273px, calc(273px + (100vw - 1440px) * 0.22083), 379px);
+  }
+}
