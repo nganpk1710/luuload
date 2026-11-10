@@ -72,7 +72,7 @@ Quy tắc phụ:
 | D-11 | Giấy phép Vina Vịt Lộn và Aeonik, glyph tiếng Việt | Chưa kiểm tra | `CHỜ` | Font |
 | D-12 | Định dạng số bước | `01`, `02`, `03` | `ĐỀ XUẤT` | Hero steps |
 | D-13 | Route `/categories/*` | Chưa xác nhận | `CHỜ` | Link nhóm văn hóa |
-| D-14 | Nạp GSAP, Smooothy | Không nạp trong 01a | `ĐỀ XUẤT` | Thư viện |
+| D-14 | Nạp GSAP, Smooothy | GSAP 3.12.5 + ScrollTrigger qua CDN pin version, chỉ cho pinned gallery (home.features-projects). Smooothy không nạp | `CHỐT` (GSAP, 2026-11-10) | Thư viện |
 | D-15 | DialKit | Chỉ khi có `?tune`, không production | `ĐỀ XUẤT` | Công cụ tinh chỉnh |
 | D-16 | Màu trong SVG khác token: vàng `#FFEF00` so với `#FFF11C`, đỏ `#BA2016` so với `#BA1616` | Chưa đổi màu. Xem `ASSETS.md` mục 4 | `CHỜ` | Mọi khối vàng và đỏ |
 | D-17 | Viết tên thương hiệu: thiết kế dùng cả "LUULOAD" (header, copyright, email) và "LƯU LOAD" (footer, H2 USP) | Logo và nhãn kỹ thuật dùng LUULOAD. Văn bản dùng Lưu Load | `CHỜ` | Footer, USP, copyright |
@@ -118,4 +118,5 @@ Quy tắc phụ:
 
 | Ngày | Thay đổi |
 |---|---|
+| 2026-11-10 | D-14 chốt: nạp GSAP 3.12.5 + ScrollTrigger (CDN) cho pinned gallery. Ảnh project: crop 4:5, WebP, thứ tự ngẫu nhiên cố định, copy tạm pending |
 | 2026-11-10 | v1: bộ tài liệu, tokens, motion config, nội dung trang chủ đồng bộ từ thiết kế 1920. Thêm 2 section, D-16 đến D-23 |

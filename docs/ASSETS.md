@@ -60,6 +60,27 @@ Logo là SVG đã outline chữ. Logo mark (hình người trong khối vàng) c
 | `img.last-cta.people-1` | Ảnh nhóm người, góc trái | `home.last-cta` | `TODO(asset)` |
 | `img.last-cta.people-2` | Ảnh làm việc, góc phải | `home.last-cta` | `TODO(asset)` |
 
+### Ảnh project (pinned gallery, `home.features-projects`)
+
+Nguồn: `Images/Projects Images/*.jpg`. Đã crop giữa 4:5 (`object-fit: cover` theo quyết định người dùng), xuất WebP q78 vào `images/projects/`, không phóng to (8 ảnh gốc rộng 736–1183px, thấp hơn 1200px của hướng dẫn gallery). Thứ tự ngẫu nhiên, cố định (seed 2812). Quyền sử dụng và credits: `CHỜ`.
+
+| File | Nguồn | Kích thước |
+|---|---|---|
+| 01-comico-comic | comico_comic | 1080×1350 |
+| 02-wake-conference | wake_conference | 736×920 |
+| 03-onion-poster | onion_poster | 1200×1500 |
+| 04-graphic-trend | graphic_trend | 1200×1500 |
+| 05-graphic-festival | graphic_festival | 811×1014 |
+| 06-hoigiong-poster | hoigiong_poster | 736×920 |
+| 07-bo-vietnamese-cafe | Bo_Vietnamese_Cafe | 1200×1500 |
+| 08-photrongpho-genfest | photrongpho_genfest | 736×920 |
+| 09-inspiration-signstreet | inspiration_signstreet | 735×919 |
+| 10-image-the-land | image_the_land | 819×1024 |
+| 11-project-cadaotucngu | project_cadaotucngu | 736×920 |
+| 12-poster-vanphong | poster_vanphong | 1183×1479 |
+| 13-casbala-music | casbala_music | 1200×1500 |
+| 14-poster-saigon2026 | poster_saigon2026 | 736×920 |
+
 Ảnh cần credits và quyền sử dụng (`CONTENT.md` mục 5). Ảnh chưa xác nhận quyền không đưa lên repo.
 
 ## 6. Quyết định liên quan

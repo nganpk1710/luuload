@@ -9,7 +9,7 @@
 | Ngôn ngữ | HTML5, CSS3, JavaScript ES2019, không module | `CHỐT` (D-06) |
 | Build | Không có | `CHỐT` |
 | Chạy | Mở `index.html` qua `file://` phải chạy đầy đủ | `CHỐT` |
-| Thư viện animation | Không nạp trong 01a | `ĐỀ XUẤT` (D-14) |
+| Thư viện animation | GSAP + ScrollTrigger CDN, chỉ cho pinned gallery | `CHỐT` (D-14) |
 | Font | `@font-face`, tự host WOFF2 | `CHỜ` (D-11) |
 | Deploy | Static hosting | `CHỜ` |
 
@@ -161,7 +161,7 @@ Slug và tên file không dấu là quy tắc cứng.
 
 | Thư viện | Trạng thái | Điều kiện nạp |
 |---|---|---|
-| GSAP, ScrollTrigger | `ĐỀ XUẤT` không nạp 01a | Khi cần timeline (D-14) |
+| GSAP 3.12.5, ScrollTrigger 3.12.5 | `CHỐT` (D-14) | CDN jsdelivr pin version, nạp sau `motion.config.js`, trước `sections/home-features-projects.js`. Cần mạng khi chạy `file://`; thiếu thì gallery rơi về layout tĩnh |
 | SplitText | Như GSAP | Khi reveal dòng bằng CSS không đủ |
 | Smooothy | Không nạp 01a | Khi có slider (01b) |
 | DialKit | `ĐỀ XUẤT` | Chỉ khi có `?tune`, không production (D-15) |
