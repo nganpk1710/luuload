@@ -162,3 +162,10 @@ Preloader rèm, logo FLIP, slider tự động, overlay FLIP từ card, chuyển
 - [ ] Trên 390px: knob không che hoàn toàn chữ.
 - [ ] Overshoot ≤ 4% ở mọi `playful`.
 - [ ] Thời lượng CTA 1000ms được duyệt trên thiết bị thật (D-10).
+
+## 12. Pinned gallery (home.features-projects)
+
+- Nguồn: `HUONG-DAN-KY-THUAT.md` do người dùng gửi, tham chiếu chuyển động das.info.vn. Thông số ở `LL.motion.gallery`.
+- Chỉ chạy khi `>= 1280px` và `prefers-reduced-motion: no-preference`. Ngoài ra là layout xếp dọc, không transform.
+- Một timeline gắn scroll (`scrub`): track đi lên, mỗi card `fromTo` rotateY, z, scale, opacity. Chỉ `transform` và `opacity`.
+- Mở rộng so với mục 10 và TECH_STACK: parallax kiểu này trước đây nằm ngoài 01a, nay được người dùng yêu cầu trực tiếp.

@@ -78,7 +78,7 @@ Quy tắc phụ:
 | D-17 | Viết tên thương hiệu: thiết kế dùng cả "LUULOAD" (header, copyright, email) và "LƯU LOAD" (footer, H2 USP) | Logo và nhãn kỹ thuật dùng LUULOAD. Văn bản dùng Lưu Load | `CHỜ` | Footer, USP, copyright |
 | D-18 | Thêm 2 section ngoài danh sách 7 spec: Thành quả sáng tạo (`home-showcase`), Tầm nhìn–Sứ mệnh–Giá trị (`home-mission`) | Thêm, vì có trong thiết kế | `ĐỀ XUẤT` | Phạm vi |
 | D-19 | Footer là thành phần dùng chung mọi trang | Component `blocks/footer.js`, spec giữ `home-footer.md` làm bản thiết kế gốc | `ĐỀ XUẤT` | Footer ở trang khác |
-| D-20 | Features projects: thiết kế hiện chỉ có 4 thẻ nhóm văn hóa, không có project thật | Dùng 4 thẻ nhóm trước. Project thật làm sau khi có dữ liệu | `CHỜ` | Nội dung features |
+| D-20 | Features projects: frame Figma 2221:375 và 2295:339 là gallery project (tiêu đề "Thành quả sáng tạo"), không phải 4 thẻ nhóm. Trùng nội dung với `home.showcase` | Dùng 14 ảnh project làm gallery. Tên, alt tạm theo tên file. Chờ xác nhận gộp với `home-showcase` | `CHỜ` | Tên, alt, danh mục project |
 | D-21 | Đoạn mô tả Community lặp ở hai bên (trái và phải cùng một câu) | Giữ theo thiết kế, chờ xác nhận có chủ đích | `CHỜ` | Copy Community |
 | D-22 | Hashtag hiển thị không dấu (#SANGNGUOITAOTAO, #DNAVIETLENSONG...) | Giữ không dấu | `CHỜ` | Copy hashtag |
 | D-23 | Footer cột CONNECT bị cắt "PROMOTE YOUR BRAN", email và "CREATED BY" chưa xác nhận | Chờ bản đầy đủ | `CHỜ` | Footer |
@@ -118,5 +118,6 @@ Quy tắc phụ:
 
 | Ngày | Thay đổi |
 |---|---|
+| 2026-11-10 | Dựng `home.features-projects` theo frame 2221:375 và 2295:339: pinned gallery GSAP, token `--fp-*`, block `gallery` trong `motion.config.js` (thêm mới, không đổi giá trị cũ), spec `home-features-projects.md`. Ngưỡng pin 1280px thay 1024px |
 | 2026-11-10 | D-14 chốt: nạp GSAP 3.12.5 + ScrollTrigger (CDN) cho pinned gallery. Ảnh project: crop 4:5, WebP, thứ tự ngẫu nhiên cố định, copy tạm pending |
 | 2026-11-10 | v1: bộ tài liệu, tokens, motion config, nội dung trang chủ đồng bộ từ thiết kế 1920. Thêm 2 section, D-16 đến D-23 |

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/globals.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections/home-hero.css">
+  <link rel="stylesheet" href="css/sections/home-features-projects.css">
 </head>
 <body>
   <!-- Thứ tự nạp là bắt buộc (docs/TECH_STACK.md mục 2). Script thường, không module. -->
@@ -21,6 +22,7 @@
   <script src="js/content/brand.js"></script>
   <script src="js/content/nav.js"></script>
   <script src="js/content/home.js"></script>
+  <script src="js/content/projects.js"></script>
   <script src="js/components/ui/skip-link.js"></script>
   <script src="js/components/ui/logo.js"></script>
   <script src="js/components/ui/button-cta.js"></script>
@@ -33,7 +35,11 @@
   <script src="js/components/blocks/site-strip.js"></script>
   <script src="js/components/blocks/hero-mosaic.js"></script>
   <script src="js/components/blocks/header.js"></script>
+  <!-- D-14: GSAP 3.12.5 qua CDN, pin version, chỉ cho pinned gallery. Thiếu thì gallery xếp dọc. -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
   <script src="js/sections/home-hero.js"></script>
+  <script src="js/sections/home-features-projects.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

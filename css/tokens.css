@@ -268,3 +268,54 @@
   --strip-line-w: clamp(273px, calc(273px + (100vw - 1440px) * 0.22083), 379px);
   }
 }
+
+/*
+ * Section home.features-projects. Nguồn: Figma Features projects 1920 (2221:375) và 1440 (2295:339).
+ * Chiều cao frame 900 ở cả hai. Cỡ chữ tiêu đề dùng lại --fs-display (100 đến 140, khớp frame).
+ * Card gallery: frame chỉ có ảnh chụp tham chiếu, không có kích thước card, nên
+ * --fp-card-w là [ĐỀ XUẤT] (TODO(figma)).
+ * Dưới 1280: gallery xếp dọc, không pin [ĐỀ XUẤT].
+ */
+:root {
+  --fp-h: 900px;
+  --fp-stage-h: max(var(--fp-h), 100svh);
+  --fp-perspective: 1400px;
+  --fp-pad-l: var(--layout-margin);
+  --fp-fs-lead: var(--fs-lead);
+  --fp-lh-lead: var(--lh-lead);
+  --fp-content-gap: var(--space-8);
+  --fp-card-w: min(100%, 560px);
+  --fp-gap: var(--space-12);
+}
+
+@media (min-width: 1280px) {
+  :root {
+    /* Laptop: co theo viewport, trần = giá trị frame 1440. */
+    --fp-pad-l: 31px;
+    --fp-content-w: min(556px, 38.611vw);
+    --fp-content-h: min(721px, 50.069vw);
+    --fp-dy: 9.5px;
+    --fp-lead-w: min(322px, 22.361vw);
+    --fp-fs-lead: clamp(16px, 1.389vw, 20px);
+    --fp-lh-lead: min(30px, 2.083vw);
+    --fp-content-gap: min(91px, 6.319vw);
+    --fp-gallery-w: min(821px, 57.014vw);
+    --fp-card-w: min(300px, 20.833vw);
+    --fp-gap: calc(var(--fp-card-w) * -0.3); /* card chồng lên nhau như frame tham chiếu */
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    /* Desktop: nội suy giữa frame 1440 và 1920. */
+    --fp-content-w: clamp(556px, calc(556px + (100vw - 1440px) * 0.225), 664px);
+    --fp-content-h: clamp(721px, calc(721px + (100vw - 1440px) * 0.03958), 740px);
+    --fp-dy: clamp(8px, calc(9.5px + (100vw - 1440px) * -0.003125), 9.5px);
+    --fp-lead-w: clamp(322px, calc(322px + (100vw - 1440px) * 0.14167), 390px);
+    --fp-fs-lead: clamp(20px, calc(20px + (100vw - 1440px) * 0.00833), 24px);
+    --fp-lh-lead: 30px;
+    --fp-content-gap: 91px;
+    --fp-gallery-w: clamp(821px, calc(821px + (100vw - 1440px) * 0.58333), 1101px);
+    --fp-card-w: clamp(300px, calc(300px + (100vw - 1440px) * 0.20833), 400px);
+  }
+}

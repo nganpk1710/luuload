@@ -18,6 +18,16 @@
   var brand = LL.content.brand;
 
   LL.content.home = {
+    // Section home.features-projects. Copy theo frame Figma 2221:375. CTA dùng nav.cta (D-09).
+    featuresProjects: {
+      heading: { value: 'thành quả sáng tạo', status: 'proposed' },
+      lead: {
+        value: 'Sáng tạo ở Việt Nam giống như việc cắm sạc lỏng: Ý tưởng thì rực rỡ, văn hóa thì bao la, nhưng cứ hễ cất tiếng là sợ "lạc trôi"',
+        status: 'proposed'
+      },
+      galleryLabel: { value: 'Dự án nổi bật', status: 'pending', decision: 'D-20' }
+    },
+
     hero: {
       eyebrow: { value: 'Dành cho', status: 'proposed' },
 

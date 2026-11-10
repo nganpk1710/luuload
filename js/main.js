@@ -36,12 +36,15 @@
     main.id = 'main';
     var hero = LL.sections.HomeHero();
     main.appendChild(hero);
+    var projects = LL.sections.HomeFeaturesProjects();
+    main.appendChild(projects);
 
     body.appendChild(skip);
     body.appendChild(header);
     body.appendChild(main);
 
     LL.sections.playHomeHero(hero, header);
+    LL.sections.initHomeFeaturesProjects(projects);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

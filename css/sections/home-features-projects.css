@@ -1,0 +1,141 @@
+/*
+ * css/sections/home-features-projects.css
+ * Section home.features-projects. Spec: docs/section-details/home-features-projects.md.
+ * Lớp 1 (mặc định): xếp dọc, không pin, đọc được khi JS tắt, thiếu GSAP, mobile, giảm chuyển động.
+ * Lớp 2 (.is-pinned, JS thêm khi >= 1280px và cho phép chuyển động): bố cục theo frame Figma, gallery pin.
+ * Chỉ animate transform và opacity. will-change chỉ đặt ở lớp pinned.
+ */
+
+/* ---------- Lớp 1: xếp dọc ---------- */
+
+.fp__pin {
+  position: relative;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.fp__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fp-content-gap);
+  padding: var(--space-12) var(--layout-margin) var(--space-8);
+}
+
+.fp__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-display);
+  line-height: 1.02;
+  text-box: trim-both cap alphabetic;
+  overflow-wrap: break-word;
+}
+
+.fp__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--fp-content-gap);
+  max-width: 640px;
+}
+
+.fp__lead {
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--fp-fs-lead);
+  line-height: var(--fp-lh-lead);
+  text-box: trim-both cap alphabetic;
+}
+
+.gallery {
+  position: relative;
+  overflow: hidden;
+  perspective: var(--fp-perspective);
+}
+
+.gallery__track {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fp-gap);
+  margin: 0;
+  padding: var(--space-8) var(--layout-margin) var(--space-12);
+  list-style: none;
+}
+
+.card {
+  width: var(--fp-card-w);
+  margin: 0;
+  backface-visibility: hidden;
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+/* Reveal khi vào viewport (MOTION.md mục 4): nội dung trái fade và dịch nhẹ. */
+.fp__content > *,
+.fp__body > * {
+  transition:
+    opacity var(--motion-reveal) var(--ease-out),
+    transform var(--motion-reveal) var(--ease-out);
+}
+
+.fp.is-pending .fp__title,
+.fp.is-pending .fp__body {
+  opacity: 0;
+  transform: translateY(var(--space-4));
+}
+
+/* ---------- Lớp 2: pinned (>= 1280px, JS bật) ---------- */
+
+.fp.is-pinned .fp__pin {
+  height: var(--fp-stage-h);
+  overflow: hidden;
+}
+
+/* Hộp nội dung theo Figma: cao cố định, canh giữa dọc cộng độ lệch, tiêu đề trên, mô tả và CTA dưới. */
+.fp.is-pinned .fp__content {
+  position: absolute;
+  z-index: 1;
+  left: var(--fp-pad-l);
+  top: calc(50% + var(--fp-dy) - var(--fp-content-h) / 2);
+  width: var(--fp-content-w);
+  height: var(--fp-content-h);
+  justify-content: space-between;
+  gap: 0;
+  padding: 0;
+}
+
+.fp.is-pinned .fp__title {
+  line-height: normal;
+}
+
+.fp.is-pinned .fp__body {
+  width: var(--fp-lead-w);
+  max-width: none;
+}
+
+/* Khung gallery: neo mép phải, cao bằng sân khấu, cắt phần tràn như frame (overflow-clip). */
+.fp.is-pinned .gallery {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--fp-gallery-w);
+  height: 100%;
+}
+
+.fp.is-pinned .gallery__track {
+  padding: var(--fp-stage-h) 0 calc(var(--fp-stage-h) / 2);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.fp.is-pinned .card {
+  margin-left: var(--x, 0);
+  will-change: transform, opacity;
+}
+
+/* TODO(asset): nền wireframe (ASSETS.md deco.wireframe). Frame Figma chỉ có ảnh chụp tham chiếu, chưa có file SVG. */
