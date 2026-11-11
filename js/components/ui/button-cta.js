@@ -2,8 +2,8 @@
  * js/components/ui/button-cta.js
  * Props: { href: string, label: string, disabled?: boolean }
  * Hành vi: docs/MOTION.md mục 8 (mô hình tiến độ p, đảo chiều từ vị trí hiện tại).
- * Cấu trúc theo frame Figma: khung chữ và knob tròn đứng cạnh nhau. Khi mở, knob trượt
- * sang trái lên khung. Mọi thời lượng, easing, scale, góc xoay lấy từ LL.motion.
+ * Theo GIF tham chiếu: mũi tên xoay thành ↗, knob phải co về 0, khung chữ trượt sang phải,
+ * knob mới mọc ra bên trái. Màu giữ nguyên. Mọi thời lượng, easing, pha, góc xoay lấy từ LL.motion.
  */
 (function (global) {
   'use strict';
@@ -33,33 +33,39 @@
     var label = h('span', { class: 'cta__label' }, [h('span', { class: 'cta__text', text: props.label })]);
     var arrow = arrowIcon();
     var knob = h('span', { class: 'cta__knob', attrs: { 'aria-hidden': 'true' } }, [arrow]);
+    var lead = h('span', { class: 'cta__knob cta__knob--lead', attrs: { 'aria-hidden': 'true' } }, [arrowIcon()]);
     var root = h('a', {
       class: 'cta',
       attrs: {
         href: props.href,
         'aria-disabled': props.disabled ? 'true' : null
       }
-    }, [label, knob]);
+    }, [lead, label, knob]);
     root.style.setProperty('--cta-press-scale', String(motion.cta.pressScale));
+    root.style.setProperty('--cta-rotate', motion.cta.rotateDeg + 'deg');
+    var ph = motion.cta.phases;
+
+    function seg(p, range) {
+      return ease(Math.min(1, Math.max(0, (p - range[0]) / (range[1] - range[0]))));
+    }
 
     var state = { p: 0, target: 0, raf: 0, last: 0, distance: 0 };
 
     function measure() {
       var gap = parseFloat(getComputedStyle(root).columnGap) || 0;
-      state.distance = label.offsetWidth + gap;
+      state.distance = knob.offsetWidth + gap; // quãng đường = knob + gap
     }
 
     function render() {
       var p = state.p;
-      var e = ease(p);
-      var scale = 1 - (1 - motion.cta.shrinkMin) * Math.sin(Math.PI * p);
-      knob.style.setProperty('transform', 'translateX(' + (-e * state.distance).toFixed(2) + 'px) scale(' + scale.toFixed(4) + ')');
-      arrow.style.setProperty('transform', 'rotate(' + (e * motion.cta.rotateDeg).toFixed(2) + 'deg)');
+      arrow.style.setProperty('transform', 'rotate(' + (seg(p, ph.rotate) * motion.cta.rotateDeg).toFixed(2) + 'deg)');
+      knob.style.setProperty('transform', 'scale(' + (1 - seg(p, ph.shrink)).toFixed(4) + ')');
+      label.style.setProperty('transform', 'translateX(' + (seg(p, ph.slide) * state.distance).toFixed(2) + 'px)');
+      lead.style.setProperty('transform', 'scale(' + seg(p, ph.grow).toFixed(4) + ')');
     }
 
     function clearTransforms() {
-      knob.style.removeProperty('transform');
-      arrow.style.removeProperty('transform');
+      [knob, arrow, label, lead].forEach(function (el) { el.style.removeProperty('transform'); });
     }
 
     function tick(now) {
@@ -73,7 +79,7 @@
         state.raf = requestAnimationFrame(tick);
       } else {
         state.raf = 0;
-        knob.style.removeProperty('will-change');
+        label.style.removeProperty('will-change');
         if (state.p === 0) clearTransforms();
       }
     }
@@ -93,7 +99,7 @@
         return;
       }
       measure();
-      knob.style.setProperty('will-change', 'transform');
+      label.style.setProperty('will-change', 'transform');
       if (!state.raf) {
         state.last = performance.now();
         state.raf = requestAnimationFrame(tick);

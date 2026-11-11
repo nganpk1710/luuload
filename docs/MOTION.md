@@ -76,9 +76,14 @@ Nội dung chính đầy đủ trong khoảng 1.5 giây.
 
 | Thuộc tính | Công thức |
 |---|---|
-| Vị trí knob | `translateX` = −`easing.out(p)` × quãng đường |
-| Scale knob | 1 → `cta.shrinkMin` tại `p = 0.5` → 1 tại `p = 1` |
-| Xoay mũi tên | `easing.out(p)` × `cta.rotateDeg` |
+Mỗi thuộc tính chạy trong một pha `cta.phases.*` = [a, b] của `p`; tiến độ pha `q = easing.out(clamp((p − a)/(b − a)))`. Theo GIF tham chiếu (không còn đổi màu đỏ khi hover):
+
+| Thuộc tính | Công thức |
+|---|---|
+| Xoay mũi tên knob phải | `q(rotate)` × `cta.rotateDeg` (→ thành ↗) |
+| Knob phải | scale = 1 − `q(shrink)` (co về 0) |
+| Khung chữ | `translateX` = `q(slide)` × (knob + gap) |
+| Knob mới bên trái | scale = `q(grow)`, mũi tên giữ ↗ |
 
 ### 6.4 Sự kiện
 | Sự kiện | Hành vi |

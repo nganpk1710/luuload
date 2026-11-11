@@ -41,9 +41,15 @@
   };
 
   var cta = {
-    shrinkMin: 0.3,      // scale knob tại p = 0.5
-    rotateDeg: -45,      // góc xoay mũi tên khi mở
-    pressScale: 0.97     // scale khi nhấn
+    rotateDeg: -45,      // góc xoay mũi tên (→ thành ↗)
+    pressScale: 0.97,    // scale khi nhấn
+    // Các pha theo mô hình p (0..1), mỗi pha là khoảng [bắt đầu, kết thúc] của p (theo GIF tham chiếu)
+    phases: {
+      rotate: [0, 0.35],    // mũi tên knob phải xoay thành ↗
+      shrink: [0.2, 0.6],   // knob phải co về 0
+      slide: [0.4, 1],      // khung chữ trượt sang phải một đoạn knob + gap
+      grow: [0.5, 1]        // knob mới mọc ra bên trái, mũi tên ↗
+    }
   };
 
   // Pinned gallery dạng xoắn ốc 3D (home.features-projects). Cơ chế theo HUONG-DAN-KY-THUAT.md (Spiral Gallery)

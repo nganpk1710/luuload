@@ -117,6 +117,7 @@
 
 /* Button CTA: khung chữ và knob đứng cạnh nhau (frame Figma). Chuyển động ở button-cta.js. */
 .cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--cta-gap);
@@ -141,9 +142,6 @@
   font-size: var(--fs-button);
   line-height: normal;
   white-space: nowrap;
-  transition:
-    background-color var(--motion-fast) var(--ease-out),
-    color var(--motion-fast) var(--ease-out);
 }
 
 .cta__text {
@@ -162,9 +160,6 @@
   background: var(--color-accent);
   color: var(--color-primary);
   border-radius: var(--radius-pill);
-  transition:
-    background-color var(--motion-fast) var(--ease-out),
-    color var(--motion-fast) var(--ease-out);
 }
 
 .cta__arrow {
@@ -172,14 +167,17 @@
   height: calc(var(--knob-size) * 0.4);
 }
 
-.cta[data-hover] .cta__label {
-  background: var(--color-red);
-  color: var(--color-on-red);
+/* Knob mới mọc bên trái khi hover (GIF tham chiếu). Mặc định co về 0, mũi tên ↗. */
+.cta__knob--lead {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: calc(var(--knob-size) / -2);
+  transform: scale(0);
 }
 
-.cta[data-hover] .cta__knob {
-  background: var(--color-paper);
-  color: var(--color-red);
+.cta__knob--lead .cta__arrow {
+  transform: rotate(var(--cta-rotate, -45deg));
 }
 
 .cta[aria-disabled="true"] {
