@@ -118,6 +118,7 @@ Quy tắc phụ:
 
 | Ngày | Thay đổi |
 |---|---|
+| 2026-11-11 | Dựng `home.preloader` theo demo và video chandebootcamp (không mosaic): đếm 0 → 100, thanh theo mốc 30 / 60 / 100 kèm graphic Line 30, 60, 100, co về nav rồi hero reveal. Config `preloader` trong `motion.config.js` [ĐỀ XUẤT]. Preloader được người dùng yêu cầu làm ngay, dù mục 7 xếp ngoài 01a. `js/sections/preloader.js`, `css/sections/preloader.css`, `images/preloader/` |
 | 2026-11-11 | Dựng `home.usp`, `home.hashtag`, `home.community` theo frame 1920 (2155:1423, 2155:1230, 2155:1323). Chưa có frame 1440: từ 1280 co theo `--u1920`, dưới 1280 xếp dọc [ĐỀ XUẤT]. Thêm token `--color-orange`, `--color-sky` (Figma Variables rỗng, lấy giá trị từ frame), `--u1920`, `--usp-*`, `--ht-*`, `--cm-*`; `marquee.speedPxPerSec` (60, đề xuất) trong `motion.config.js`; `js/utils/reveal.js`; reveal `data-reveal="fade"` trong `globals.css`. Asset vào `images/usp`, `images/hashtag`, `images/community` |
 | 2026-11-11 | CTA: viết lại micro-interaction theo GIF (xoay ↗, knob phải co, chữ trượt phải, knob mới mọc trái, bỏ đổi màu đỏ). `motion.config.js`: `cta.shrinkMin` thay bằng `cta.phases` (người dùng yêu cầu). Gallery: `backface-visibility: visible` để card đi vào trong xoắn vẫn thấy |
 | 2026-11-11 | `home.features-projects`: thu card từ 300/400px xuống 220/300px để xoắn nằm trong khung, `scrollFactor` 0.7 lên 1.4 |

@@ -52,6 +52,17 @@
     }
   };
 
+  // Preloader (home.preloader). Nhịp theo chandebootcamp.com (video tham chiếu), không có mosaic.
+  // Toàn bộ là [ĐỀ XUẤT], chưa có frame Figma. Tổng ~5000ms: start + count + hold + exit.
+  var preloader = {
+    start: 600,        // ms trước khi đếm bắt đầu (logo và chữ reveal trước)
+    count: 3600,       // ms để đếm từ 0 đến 100
+    hold: 300,         // ms giữ ở 100 trước khi thoát
+    exit: 500,         // ms co khối loader về chiều cao nav
+    steps: [30, 60, 100], // ba mốc: mỗi mốc có một bộ graphic (Line 30, Line 60, Line 100)
+    frameMs: 90        // ms mỗi khung SVG của graphic (4 khung mỗi bộ)
+  };
+
   // Marquee hashtag (home.hashtag). Hai hàng ngược chiều. Tốc độ [ĐỀ XUẤT], chưa có trong Figma.
   var marquee = {
     speedPxPerSec: 60
@@ -118,6 +129,7 @@
     cta: cta,
     gallery: gallery,
     marquee: marquee,
+    preloader: preloader,
     media: media
   };
   LL.resolveDuration = resolve;

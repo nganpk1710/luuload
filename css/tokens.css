@@ -359,3 +359,14 @@
     --cm-fs-body: calc(24 * var(--u1920));
   }
 }
+
+/* Preloader (home.preloader). Demo 1920x900: khối vàng cao 80px, cách mép 34px. [ĐỀ XUẤT], chưa có frame Figma. */
+:root {
+  --z-preloader: 1000;
+  --pre-strip-h: clamp(56px, 4.167vw, 80px);
+  --pre-pad: clamp(16px, 1.771vw, 34px);
+  --pre-fs-word: clamp(20px, 2.292vw, 44px);
+  --pre-fs-count: clamp(14px, 1.25vw, 24px);
+  --pre-fs-tag: clamp(10px, 0.833vw, 16px);
+  --pre-line-gap: 2px;
+}

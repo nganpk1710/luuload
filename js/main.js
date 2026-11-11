@@ -49,11 +49,16 @@
     body.appendChild(header);
     body.appendChild(main);
 
-    LL.sections.playHomeHero(hero, header);
     LL.sections.initHomeFeaturesProjects(projects);
     LL.sections.initHomeUsp(usp);
     LL.sections.initHomeHashtag(hashtag);
     LL.sections.initHomeCommunity(community);
+
+    // Preloader phủ trên trang. Hero chỉ bắt đầu reveal khi loader co về nav.
+    LL.sections.runPreloader({
+      header: header,
+      onExit: function () { LL.sections.playHomeHero(hero, header); }
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

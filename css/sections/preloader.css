@@ -1,0 +1,149 @@
+/*
+ * css/sections/preloader.css. Section home.preloader. Số đo lấy từ tokens.css (--pre-*), nhịp từ motion.config.js
+ * (preloader.*). Khối phủ toàn màn hình, co dần về chiều cao nav khi thoát (clip-path, không đổi layout trang).
+ */
+.pre {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-preloader);
+  display: flex;
+  align-items: center;
+  background: var(--color-primary);
+  clip-path: inset(0 0 0 0);
+  transition: clip-path var(--motion-base) var(--ease-out);
+}
+
+.pre.is-exit {
+  clip-path: inset(0 0 calc(100% - var(--pre-nav-h, 0px)) 0);
+  transition: clip-path var(--motion-cta) var(--ease-out);
+}
+
+.pre__strip {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto var(--pre-strip-h);
+  align-items: center;
+  gap: var(--space-6);
+  width: 100%;
+  height: var(--pre-strip-h);
+  padding: 0 var(--pre-pad);
+  color: var(--color-accent);
+}
+
+/* Reveal chữ theo dòng: mỗi dòng nằm trong vùng overflow hidden, chữ trượt từ dưới lên (MOTION.md mục 4). */
+.pre__line {
+  display: block;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.pre__line > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform var(--motion-reveal) var(--ease-out) var(--pre-d, 0ms);
+}
+
+.pre.is-run .pre__line > span {
+  transform: none;
+}
+
+.pre__word {
+  font-family: var(--font-display);
+  font-size: var(--pre-fs-word);
+  text-box: trim-both cap alphabetic;
+}
+
+.pre__tag {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--pre-fs-tag);
+  text-transform: uppercase;
+  margin-top: var(--pre-line-gap);
+}
+
+.pre__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pre-line-gap);
+}
+
+/* Thanh tiến độ: scaleX theo mốc 30 / 60 / 100, đổi mốc bằng transform playful (MOTION.md mục 3, easing.playful). */
+.pre__track {
+  position: relative;
+  height: calc(var(--pre-strip-h) * 0.5);
+  background: rgb(from var(--color-ink) r g b / 0.25);
+  overflow: hidden;
+}
+
+.pre__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--motion-base) var(--ease-playful);
+}
+
+.pre__count {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--pre-fs-count);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pre__label {
+  display: block;
+  overflow: hidden;
+}
+
+.pre__value {
+  display: inline-block;
+  min-width: 3ch;
+  text-align: right;
+}
+
+/* Graphic theo mốc (ô vuông bằng chiều cao khối vàng demo): chỉ một bộ hiện, trong bộ chỉ một khung hiện. Khung đổi tức thời, không cross-fade. */
+.pre__art {
+  position: relative;
+  width: var(--pre-strip-h);
+  height: var(--pre-strip-h);
+}
+
+.pre__set {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+
+.pre__set.is-on {
+  visibility: visible;
+}
+
+.pre__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+.pre__frame.is-on {
+  visibility: visible;
+}
+
+/* Khi đang khoá cuộn trong lúc loader chạy. */
+body.is-loading {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pre,
+  .pre.is-exit,
+  .pre__line > span,
+  .pre__fill {
+    transition: none;
+  }
+}

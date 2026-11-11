@@ -18,6 +18,14 @@
   var brand = LL.content.brand;
 
   LL.content.home = {
+    // Preloader (home.preloader). Frame Figma chưa có. Nguồn: demo người dùng gửi.
+    preloader: {
+      wordmark: { value: 'LUULOAD', status: 'proposed', decision: 'D-17' },
+      tag: { value: 'creative community', status: 'proposed' },
+      label: { value: 'loading', status: 'proposed' },
+      aria: { value: 'Đang tải trang', status: 'proposed' }
+    },
+
     // Section home.usp. Frame Figma 2155:1423 (chỉ có 1920). Spec: docs/section-details/home-usp.md.
     usp: {
       h2: {

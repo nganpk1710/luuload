@@ -176,3 +176,18 @@ Preloader rèm, logo FLIP, slider tự động, overlay FLIP từ card, chuyển
 - Một tween gắn scroll (`scrub`): xoắn dâng `y` từ 0 đến `−(N−1)·P` và xoay `rotateY` từ 0 đến `(N−1)·STEP`. Không đổi opacity.
 - Hover, focus: ảnh trong card scale `--fp-hover-scale` (1.03), `duration.base`, `easing.playful`. Giảm chuyển động thì không pin nên không có hiệu ứng này.
 - Chỉ `transform`. Mở rộng so với mục 9 (parallax ngoài 01a): người dùng yêu cầu trực tiếp.
+
+## 10. Preloader (home.preloader)
+
+Nguồn nhịp: video tham chiếu chandebootcamp.com, không dùng mosaic. Demo người dùng gửi (`Preloader_demo.mp4`, 1920×900). Số trong `motion.config.js` mục `preloader` là [ĐỀ XUẤT], chưa có frame Figma.
+
+| Pha | Mốc (ms) | Việc |
+|---|---|---|
+| Mở | 0 đến `start` (600) | Khối vàng và logo, chữ reveal theo dòng (`stagger.lines`) |
+| Đếm | `start` đến `start + count` (600 đến 4200) | Số 0 → 100 đều theo thời gian. Thanh nhảy theo mốc 30 / 60 / 100 bằng `easing.playful`, `duration.base` |
+| Graphic | Mỗi mốc | Bộ `line-{30,60,100}-01..04.svg` lặp 4 khung, mỗi khung `frameMs` (90) |
+| Giữ | 4200 đến 4500 | Giữ 100% |
+| Thoát | 4500 đến 5000 | Khối loader co về chiều cao nav (`clip-path`, `duration.cta`). Hero bắt đầu reveal khi thoát bắt đầu |
+
+- Giảm chuyển động (`prefers-reduced-motion`): bỏ qua loader, vào trang ngay.
+- Chữ "LUULOAD" theo D-17 (đang chờ). Tag "creative community" và nhãn "loading" là [ĐỀ XUẤT].

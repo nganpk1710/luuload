@@ -111,3 +111,15 @@ Nguồn: `Assets/Graphic Element/for 1920px/`. SVG giữ nguyên, không sửa m
 | `community.shapes` | `images/community/shapes.svg` (218×58) | `home.community` | Cụm phải (Figma 2227:567) chưa có file, dùng lại file này, TODO(figma) |
 | `community.group.*` | `images/community/art-craft.svg`, `life-flavor.svg`, `flow-sacred.svg`, `architecture-landscape.svg` (441×520) | `home.community` | Tên nhóm nằm trong SVG |
 | (không dùng) | `hastag/#*.png` | | Pill dựng bằng CSS (chữ thật, marquee cần pill nguyên vẹn; PNG bị cắt) |
+
+## Asset preloader (2026-11-11)
+
+Nguồn: `preloader.zip` người dùng gửi. Bộ SVG 64×64, mỗi mốc 4 khung, dùng trong `home.preloader`.
+
+| ID | File | Mốc |
+|---|---|---|
+| `preloader.line-30.01..04` | `images/preloader/line-30-01.svg` đến `line-30-04.svg` | 30% |
+| `preloader.line-60.01..04` | `images/preloader/line-60-01.svg` đến `line-60-04.svg` | 60% |
+| `preloader.line-100.01..04` | `images/preloader/line-100-01.svg` đến `line-100-04.svg` | 100% |
+
+Kích thước gốc: 64×64, riêng `line-100-03` 64×63 và `line-100-04` 64×65 (lệch 1px, giữ nguyên). Màu trong SVG chưa đối chiếu với token (D-16).
