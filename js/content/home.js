@@ -18,11 +18,12 @@
   var brand = LL.content.brand;
 
   LL.content.home = {
-    // Preloader (home.preloader). Frame Figma chưa có. Nguồn: demo người dùng gửi.
+    // Preloader (home.preloader). Figma 2357:1661. Logo là SVG lockup (images/preloader/logo.svg).
     preloader: {
-      wordmark: { value: 'LUULOAD', status: 'proposed', decision: 'D-17' },
-      tag: { value: 'creative community', status: 'proposed' },
-      label: { value: 'loading', status: 'proposed' },
+      logo: { src: 'images/preloader/logo.svg', width: 214, height: 35, alt: brand.name },
+      label: { value: 'Loading', status: 'proposed' },
+      tagTop: { value: 'creative', status: 'proposed' },
+      tagBottom: { value: 'community', status: 'proposed' },
       aria: { value: 'Đang tải trang', status: 'proposed' }
     },
 

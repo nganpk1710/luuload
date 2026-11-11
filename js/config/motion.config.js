@@ -52,15 +52,18 @@
     }
   };
 
-  // Preloader (home.preloader). Nhịp theo chandebootcamp.com (video tham chiếu), không có mosaic.
-  // Toàn bộ là [ĐỀ XUẤT], chưa có frame Figma. Tổng ~5000ms: start + count + hold + exit.
+  // Preloader (home.preloader). Bố cục: Figma 2357:1661 (frame không có dữ liệu motion).
+  // Nhịp theo video chandebootcamp.com, không mosaic. Toàn bộ số là [ĐỀ XUẤT]. Tổng ~5300ms.
   var preloader = {
-    start: 600,        // ms trước khi đếm bắt đầu (logo và chữ reveal trước)
-    count: 3600,       // ms để đếm từ 0 đến 100
-    hold: 300,         // ms giữ ở 100 trước khi thoát
-    exit: 500,         // ms co khối loader về chiều cao nav
-    steps: [30, 60, 100], // ba mốc: mỗi mốc có một bộ graphic (Line 30, Line 60, Line 100)
-    frameMs: 90        // ms mỗi khung SVG của graphic (4 khung mỗi bộ)
+    intro: 600,          // ms: ba đoạn của dải hiện dần, chữ reveal theo dòng
+    count: 3400,         // ms: fill chạy liên tục 0 → 100 (easing.inOut, không nhảy mốc)
+    hold: 400,           // ms: giữ ở 100%
+    exit: 900,           // ms: nền xanh reveal từ trên xuống, dải đi lên vị trí nav (easing.out)
+    handoff: 300,        // ms: dải mờ đi khi header thật hiện ra ở cuối
+    steps: [30, 60, 100],// mốc đổi hàng graphic (Line 30, Line 60, Line 100)
+    tileStagger: 80,     // ms giữa các ô graphic trong một hàng
+    tileIn: 500,         // ms một ô graphic vào hoặc ra
+    tileOffset: 8        // px dịch dọc khi ô vào hoặc ra
   };
 
   // Marquee hashtag (home.hashtag). Hai hàng ngược chiều. Tốc độ [ĐỀ XUẤT], chưa có trong Figma.

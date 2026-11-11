@@ -179,15 +179,15 @@ Preloader rèm, logo FLIP, slider tự động, overlay FLIP từ card, chuyển
 
 ## 10. Preloader (home.preloader)
 
-Nguồn nhịp: video tham chiếu chandebootcamp.com, không dùng mosaic. Demo người dùng gửi (`Preloader_demo.mp4`, 1920×900). Số trong `motion.config.js` mục `preloader` là [ĐỀ XUẤT], chưa có frame Figma.
+Bố cục: Figma 2357:1661 (frame không có dữ liệu motion). Nhịp: video chandebootcamp.com, không mosaic. Số trong `motion.config.js` mục `preloader` là [ĐỀ XUẤT]. Bản 2026-11-11 (lần 2) thay bản đầu: thanh không còn nhảy mốc, graphic không còn lặp khung.
 
-| Pha | Mốc (ms) | Việc |
+| Pha | Mốc (ms, tính từ khi loader chạy) | Việc |
 |---|---|---|
-| Mở | 0 đến `start` (600) | Khối vàng và logo, chữ reveal theo dòng (`stagger.lines`) |
-| Đếm | `start` đến `start + count` (600 đến 4200) | Số 0 → 100 đều theo thời gian. Thanh nhảy theo mốc 30 / 60 / 100 bằng `easing.playful`, `duration.base` |
-| Graphic | Mỗi mốc | Bộ `line-{30,60,100}-01..04.svg` lặp 4 khung, mỗi khung `frameMs` (90) |
-| Giữ | 4200 đến 4500 | Giữ 100% |
-| Thoát | 4500 đến 5000 | Khối loader co về chiều cao nav (`clip-path`, `duration.cta`). Hero bắt đầu reveal khi thoát bắt đầu |
+| Vào | 0 đến `intro` (600) | Ba đoạn của dải fade và dịch lên `tileOffset`, trễ `stagger.groups`. Chữ "Loading", "creative / community" reveal theo dòng |
+| Tiến độ | `intro` đến `intro + count` (600 đến 4000) | Fill chạy liên tục bằng `easing.inOut`. Số % đi theo fill |
+| Graphic | Khi số chạm 30, 60, 100 | Hàng cũ ra (dịch lên, mờ), hàng mới vào (dịch từ dưới, rõ dần). Mỗi ô trễ `tileStagger` (80), mỗi ô `tileIn` (500), `easing.out` |
+| Giữ | 4000 đến 4400 | Giữ 100% |
+| Thoát | 4400 đến 5300 | Nền xanh reveal từ trên xuống (clip-path, mép trên đi xuống) và dải đi lên vị trí header bằng translateY, `easing.out`, `exit` (900). Hero bắt đầu reveal cùng lúc |
+| Bàn giao | 5300 đến 5600 | Dải mờ đi (`handoff`), header thật ở dưới |
 
-- Giảm chuyển động (`prefers-reduced-motion`): bỏ qua loader, vào trang ngay.
-- Chữ "LUULOAD" theo D-17 (đang chờ). Tag "creative community" và nhãn "loading" là [ĐỀ XUẤT].
+- Giảm chuyển động: không dựng loader.

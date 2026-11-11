@@ -123,3 +123,13 @@ Nguồn: `preloader.zip` người dùng gửi. Bộ SVG 64×64, mỗi mốc 4 kh
 | `preloader.line-100.01..04` | `images/preloader/line-100-01.svg` đến `line-100-04.svg` | 100% |
 
 Kích thước gốc: 64×64, riêng `line-100-03` 64×63 và `line-100-04` 64×65 (lệch 1px, giữ nguyên). Màu trong SVG chưa đối chiếu với token (D-16).
+
+### Bổ sung preloader (2026-11-11, lần 2)
+
+Nguồn: `Assets/preloader.rar` (người dùng tải lên GitHub). Bộ `Line 30/60/100` trùng byte với file đã có trong `images/preloader/`.
+
+| ID | File | Ghi chú |
+|---|---|---|
+| `preloader.logo` | `images/preloader/logo.svg` (214×35) | Từ `preloader/Design/Logo.svg`, khớp node Logo của frame 2357:1661. Khác `Assets/Logo/Logo.svg` (173×42, logo header) |
+| `preloader.texture` | TODO(figma) | Node 2357:1662. Chưa có file |
+| (không dùng) | `Design/*.png`, `Preloader_Final Design.png` | Ảnh đối chiếu. `Loading.png` trong rar bị hỏng (0 byte khi giải nén) |

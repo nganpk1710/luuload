@@ -360,13 +360,32 @@
   }
 }
 
-/* Preloader (home.preloader). Demo 1920x900: khối vàng cao 80px, cách mép 34px. [ĐỀ XUẤT], chưa có frame Figma. */
+/*
+ * Preloader (home.preloader). Figma 2357:1661 (1920x900). Figma Variables của frame trả rỗng: hai màu dưới
+ * lấy từ giá trị trong frame. Từ 1280 trở lên co theo --u1920; dưới 1280 xếp dọc [ĐỀ XUẤT], chưa có frame.
+ */
 :root {
   --z-preloader: 1000;
-  --pre-strip-h: clamp(56px, 4.167vw, 80px);
-  --pre-pad: clamp(16px, 1.771vw, 34px);
-  --pre-fs-word: clamp(20px, 2.292vw, 44px);
-  --pre-fs-count: clamp(14px, 1.25vw, 24px);
-  --pre-fs-tag: clamp(10px, 0.833vw, 16px);
-  --pre-line-gap: 2px;
+  --color-primary-deep: #08018b; /* nền track và khối graphic, chờ đưa vào Figma Variables */
+  --color-divider: #b8b8b8;      /* viền trái 1px giữa các đoạn, chờ đưa vào Figma Variables */
+
+  --pre-x: 16px;
+  --pre-seg-h: 64px;
+  --pre-logo-w: 160px;
+  --pre-fs-label: 16px;
+  --pre-fs-tag: 12px;
+  --pre-tile: 44px;
+  --pre-tile-gap: 6px;
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --pre-x: calc(34 * var(--u1920));
+    --pre-seg-h: calc(80 * var(--u1920));
+    --pre-logo-w: calc(213 * var(--u1920));
+    --pre-fs-label: calc(24 * var(--u1920));
+    --pre-fs-tag: calc(14 * var(--u1920));
+    --pre-tile: calc(64 * var(--u1920));
+    --pre-tile-gap: calc(8 * var(--u1920));
+  }
 }
