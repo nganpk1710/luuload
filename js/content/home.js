@@ -20,11 +20,30 @@
   LL.content.home = {
     // Preloader (home.preloader). Figma 2357:1661. Logo là SVG lockup (images/preloader/logo.svg).
     preloader: {
-      logo: { src: 'images/preloader/logo.svg', width: 214, height: 35, alt: brand.name },
+      logo: { src: 'images/brand/logo-lockup.svg', width: 214, height: 35, alt: brand.name },
+      background: { src: 'images/preloader/background.webp', width: 1920, height: 900 },
       label: { value: 'Loading', status: 'proposed' },
       tagTop: { value: 'creative', status: 'proposed' },
       tagBottom: { value: 'community', status: 'proposed' },
       aria: { value: 'Đang tải trang', status: 'proposed' }
+    },
+
+    // Section home.last-cta. Figma 2155:1472 (chỉ có 1920).
+    lastCta: {
+      lines: [
+        { value: 'sẵn sàng', status: 'proposed' },
+        { value: 'kết nối cùng', status: 'proposed' },
+        { value: 'chúng tôi', status: 'proposed' }
+      ],
+      photos: [
+        { id: 'working', src: 'images/last-cta/people-working.webp', width: 472, height: 328, alt: { value: 'Một nhóm bạn trẻ cùng làm thủ công quanh một bàn lớn', status: 'proposed' } },
+        { id: 'young', src: 'images/last-cta/young-people.webp', width: 374, height: 277, alt: { value: 'Nhóm bạn trẻ cười đùa chụp ảnh cùng nhau', status: 'proposed' } }
+      ],
+      // Chữ trong nhãn đã outline trong SVG. Nhãn là trang trí, chữ đọc qua alt.
+      labels: [
+        { id: 'creativity', src: 'images/last-cta/label-creativity.svg', alt: { value: '#creativity', status: 'proposed' } },
+        { id: 'connection', src: 'images/last-cta/label-connection.svg', alt: { value: '#connection', status: 'proposed' } }
+      ]
     },
 
     // Section home.usp. Frame Figma 2155:1423 (chỉ có 1920). Spec: docs/section-details/home-usp.md.
@@ -118,7 +137,7 @@
       // Frame Figma kết thúc bằng "where creativity meets"; bản người dùng gõ trong yêu cầu
       // dừng ở "agency". Giữ theo frame, chờ người dùng xác nhận (xem báo cáo).
       tagline: {
-        value: 'Where creativity meets culture for young minds creatives local brand và agency where creativity meets',
+        value: 'An independent agency and creative community connecting young minds, local brands', // Figma Hero 2363:2492 (bản mới nhất)
         status: 'proposed',
         decision: 'D-01'
       },

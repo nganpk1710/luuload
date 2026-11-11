@@ -153,3 +153,14 @@ Ghi chú: tagline hiện tại là tiếng Anh trong thiết kế. Nếu D-02 ch
 | Ngày | Thay đổi |
 |---|---|
 | 2026-11-10 | Viết lại theo thiết kế 1920. Thêm mosaic, tách copy sang `home.js` |
+
+
+## Đồng bộ Figma Hero 2363:2492 (2026-11-11)
+
+Frame mới nhất (thay 2221:460). Chênh lệch đã sửa:
+- Tagline: "An independent agency and creative community connecting young minds, local brands" (D-01 vẫn CHỜ). `--lead-w` ở 1920: 612 → 630 để xuống dòng sau "community" như frame.
+- Tiêu đề: top 638 → 634 (`--eyebrow-top`, `--h1-l1-top`, `--h1-l2-top`, `--strip-top`).
+- Bo góc ở 1920: logo 10 → 8, chip 9.476 → 8, CTA 7.581 → 8.
+- Biểu tượng logo trong header: lấy từ `images/brand/logo-lockup.svg`, cắt bằng CSS (`.logo__mark` overflow hidden).
+- Đo lại ở 1920×900 headless: logo (32, 32, 214×51), mosaic (32, 132.6, 1160×420.8), khớp frame.
+- Ghi chú: màn hình Windows đặt tỉ lệ 125% thì viewport CSS chỉ còn 1536px, bố cục nằm giữa frame 1440 và 1920 (nội suy), nên trông khác ảnh Figma 1920.

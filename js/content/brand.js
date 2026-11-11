@@ -17,9 +17,10 @@
     logo: {
       // Chữ trong logo theo Figma. TODO(figma): thay bằng SVG lockup (COMPONENTS.md mục 2.1).
       wordmark: 'Lưuload',
-      // TODO(figma): xuất SVG biểu tượng "Layer_1" của frame Hero vào images/brand/logo-mark.svg
-      // rồi điền đường dẫn. Khi null, logo giữ chỗ trống đúng kích thước.
-      mark: null
+      // Biểu tượng "Layer_1": lấy từ SVG lockup (preloader.rar, Design/Logo.svg), cắt bằng CSS (.logo__mark
+      // overflow hidden). Tỉ lệ khớp Figma: lockup 213x34.857 thu về cao 27.165 thì biểu tượng rộng đúng 66.
+      mark: 'images/brand/logo-lockup.svg',
+      lockup: { src: 'images/brand/logo-lockup.svg', width: 214, height: 35 }
     },
 
     // Thứ tự theo BRAND.md. id là slug dùng làm route (D-13 chưa xác nhận).

@@ -99,3 +99,20 @@ Ghi chú: tên trong copyright là "LUULOAD" theo thiết kế. Theo D-17, văn 
 | Ngày | Thay đổi |
 |---|---|
 | 2026-11-10 | Tạo spec từ thiết kế 1920 (D-19, D-23) |
+
+
+## Triển khai (2026-11-11)
+
+Figma 2155:1493 (1920×900). Footer dùng chung (D-19): `js/components/blocks/footer.js`, `css/sections/footer.css`, nội dung `js/content/footer.js`, token `--ft-*`.
+
+| Phần tử | Toạ độ frame 1920 |
+|---|---|
+| Lockup + khối màu (`shape-footer.svg`) | (32, 83), 917×442 |
+| "Where creativity meets culture" | (1133, 136), rộng 490, 48px |
+| Cột EXPLORE / CONNECT / SOCIAL | x 32 / 347 / 662, tiêu đề y 646, danh sách y 700, 32px |
+| © và email | (1133, 779), 14px |
+| CREATED BY / NGANKIM | (1133, 803) / (1351, 803) |
+| Nút về đầu trang | (1789, 718), 99×99, liên kết `#main` |
+
+- D-23: "promote your bran", email và "Created by" giữ đúng thiết kế, `pending`. Mạng xã hội và "promote" chưa có đường dẫn nên hiển thị dạng chữ (TODO(content)).
+- Đã kiểm tra: headless 1920×900, cao 900, không lỗi console. Mobile 390: xếp dọc [ĐỀ XUẤT].

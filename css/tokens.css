@@ -214,19 +214,19 @@
   --logo-pad-x: clamp(18px, calc(18px + (100vw - 1440px) * 0.0125), 24px);
   --logo-pad-y: clamp(9px, calc(9px + (100vw - 1440px) * 0.00625), 12px);
   --logo-gap: clamp(7.5px, calc(7.5px + (100vw - 1440px) * 0.00521), 10px);
-  --radius-logo: clamp(6px, calc(6px + (100vw - 1440px) * 0.00833), 10px);
+  --radius-logo: clamp(6px, calc(6px + (100vw - 1440px) * 0.004167), 8px); /* Figma Hero 2363:2492: 8 */
   --logo-mark-w: clamp(49.5px, calc(49.5px + (100vw - 1440px) * 0.03438), 66px);
   --logo-mark-h: clamp(20.374px, calc(20.374px + (100vw - 1440px) * 0.01415), 27.165px);
   --fs-logo: clamp(18px, calc(18px + (100vw - 1440px) * 0.0125), 24px);
   --chip-h: clamp(32px, calc(40px + (100vw - 1440px) * -0.01667), 40px);
   --chip-px: clamp(12px, calc(12px + (100vw - 1440px) * 0.00833), 16px);
-  --radius-chip: clamp(6px, calc(6px + (100vw - 1440px) * 0.00724), 9.476px);
+  --radius-chip: clamp(6px, calc(6px + (100vw - 1440px) * 0.004167), 8px); /* 2363:2492: 8 */
   --fs-nav: clamp(14px, calc(14px + (100vw - 1440px) * 0.00242), 15.162px);
   --nav-gap: clamp(8px, calc(8px + (100vw - 1440px) * 0.01667), 16px);
   --menu-gap: clamp(31.5px, calc(31.5px + (100vw - 1440px) * 0.02187), 42px);
   --cta-h: 40px;
   --cta-px: 24px;
-  --radius-cta: clamp(4px, calc(4px + (100vw - 1440px) * 0.00746), 7.581px);
+  --radius-cta: clamp(4px, calc(4px + (100vw - 1440px) * 0.00833), 8px); /* 2363:2492: 8 */
   --fs-button: 16px;
   --knob-size: 40px;
   --cta-gap: clamp(1.895px, calc(2px + (100vw - 1440px) * -0.00022), 2px);
@@ -238,7 +238,7 @@
   --loc-top: clamp(124.66px, calc(147px + (100vw - 1440px) * -0.04654), 147px);
   --fs-meta: clamp(14px, calc(14px + (100vw - 1440px) * 0.00417), 16px);
   --sub-top: clamp(222px, calc(322px + (100vw - 1440px) * -0.20833), 322px);
-  --lead-w: clamp(437px, calc(437px + (100vw - 1440px) * 0.36458), 612px);
+  --lead-w: clamp(437px, calc(437px + (100vw - 1440px) * 0.40208), 630px); /* 2363:2492: dòng 1 rộng 84 + 596, cần >= 612 để xuống dòng sau "community" như frame; 630 để không tràn mép 1920 */
   --fs-lead: clamp(16px, calc(16px + (100vw - 1440px) * 0.01667), 24px);
   --lead-indent: clamp(63px, calc(63px + (100vw - 1440px) * 0.04375), 84px);
   --lh-lead: clamp(23.25px, calc(23.25px + (100vw - 1440px) * 0.01615), 31px);
@@ -254,13 +254,13 @@
   --cat-gap: clamp(24px, calc(24px + (100vw - 1440px) * 0.01667), 32px);
   --cat-w: clamp(93.75px, calc(93.75px + (100vw - 1440px) * 0.0651), 125px);
   --fs-eyebrow: clamp(20px, calc(20px + (100vw - 1440px) * 0.00833), 24px);
-  --eyebrow-top: clamp(638px, calc(670px + (100vw - 1440px) * -0.06667), 670px);
+  --eyebrow-top: clamp(634px, calc(670px + (100vw - 1440px) * -0.075), 670px); /* 2363:2492: 634 */
   --fs-display: clamp(100px, calc(100px + (100vw - 1440px) * 0.08333), 140px);
   --h1-l1-left: clamp(267px, calc(267px + (100vw - 1440px) * 0.22292), 374px);
-  --h1-l1-top: clamp(638px, calc(671.91px + (100vw - 1440px) * -0.07065), 671.91px);
-  --h1-l2-top: clamp(767.22px, calc(767.22px + (100vw - 1440px) * 0.00058), 767.5px);
+  --h1-l1-top: clamp(634px, calc(671.91px + (100vw - 1440px) * -0.07898), 671.91px);
+  --h1-l2-top: clamp(763.5px, calc(767.22px + (100vw - 1440px) * -0.00775), 767.22px);
   --fs-strip: clamp(12px, calc(12px + (100vw - 1440px) * 0.00833), 16px);
-  --strip-top: clamp(829.75px, calc(829.75px + (100vw - 1440px) * 0.04427), 851px);
+  --strip-top: clamp(829.75px, calc(829.75px + (100vw - 1440px) * 0.03594), 847px);
   --strip-gap: clamp(15px, calc(15px + (100vw - 1440px) * 0.01042), 20px);
   --strip-gap-r: clamp(18px, calc(18px + (100vw - 1440px) * 0.01458), 25px);
   --cta-w: clamp(138px, calc(138px + (100vw - 1440px) * 0.03542), 155px);
@@ -387,5 +387,29 @@
     --pre-fs-tag: calc(14 * var(--u1920));
     --pre-tile: calc(64 * var(--u1920));
     --pre-tile-gap: calc(8 * var(--u1920));
+  }
+}
+
+/* Sections home.last-cta (2155:1472) và footer (2155:1493). Chỉ có frame 1920: từ 1280 co theo --u1920,
+   dưới 1280 xếp dọc [ĐỀ XUẤT]. */
+:root {
+  --lc-fs: clamp(48px, 13vw, 120px);
+  --lc-radius: 10px;
+  --ft-fs-link: 24px;
+  --ft-fs-tagline: 32px;
+  --ft-fs-heading: 14px;
+  --ft-fs-small: 14px;
+  --ft-top-size: 64px;
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --lc-fs: calc(180 * var(--u1920));
+    --lc-radius: calc(10 * var(--u1920));
+    --ft-fs-link: calc(32 * var(--u1920));
+    --ft-fs-tagline: calc(48 * var(--u1920));
+    --ft-fs-heading: calc(16 * var(--u1920));
+    --ft-fs-small: max(calc(14 * var(--u1920)), 12px);
+    --ft-top-size: calc(99 * var(--u1920));
   }
 }

@@ -53,17 +53,21 @@
   };
 
   // Preloader (home.preloader). Bố cục: Figma 2357:1661 (frame không có dữ liệu motion).
-  // Nhịp theo video chandebootcamp.com, không mosaic. Toàn bộ số là [ĐỀ XUẤT]. Tổng ~5300ms.
+  // Nhịp theo video chandebootcamp.com, không mosaic. Toàn bộ số là [ĐỀ XUẤT]. Tổng ~5600ms.
+  // Ba nhịp rõ ràng 0-30, 30-60, 60-100: mỗi nhịp tăng tốc rồi chậm lại (easing.inOut) và dừng nhẹ ở mốc.
+  // Trong mỗi nhịp, 4 ô graphic của hàng tương ứng lần lượt thay vào theo thời gian của nhịp đó.
   var preloader = {
-    intro: 600,          // ms: ba đoạn của dải hiện dần, chữ reveal theo dòng
-    count: 3400,         // ms: fill chạy liên tục 0 → 100 (easing.inOut, không nhảy mốc)
-    hold: 400,           // ms: giữ ở 100%
-    exit: 900,           // ms: nền xanh reveal từ trên xuống, dải đi lên vị trí nav (easing.out)
-    handoff: 300,        // ms: dải mờ đi khi header thật hiện ra ở cuối
-    steps: [30, 60, 100],// mốc đổi hàng graphic (Line 30, Line 60, Line 100)
-    tileStagger: 80,     // ms giữa các ô graphic trong một hàng
-    tileIn: 500,         // ms một ô graphic vào hoặc ra
-    tileOffset: 8        // px dịch dọc khi ô vào hoặc ra
+    intro: 600,                 // ms: ba đoạn của dải hiện dần, chữ reveal theo dòng
+    phases: [                   // [từ %, đến %, ms]
+      [0, 30, 1100],
+      [30, 60, 1100],
+      [60, 100, 1400]
+    ],
+    hold: 400,                  // ms: giữ ở 100%
+    exit: 1000,                 // ms: nền reveal từ trên xuống, dải đi lên vị trí nav (easing.out)
+    fadeFrom: 0.45,             // dải bắt đầu mờ khi đã đi được phần này của exit (mờ trong lúc vẫn đang đi lên, không dừng)
+    tileIn: 520,                // ms một ô graphic vào hoặc ra
+    tileOffset: 8               // px dịch dọc khi ô vào hoặc ra
   };
 
   // Marquee hashtag (home.hashtag). Hai hàng ngược chiều. Tốc độ [ĐỀ XUẤT], chưa có trong Figma.

@@ -44,15 +44,19 @@
     main.appendChild(usp);
     main.appendChild(hashtag);
     main.appendChild(community);
+    var lastCta = LL.sections.HomeLastCta();
+    main.appendChild(lastCta);
 
     body.appendChild(skip);
     body.appendChild(header);
     body.appendChild(main);
+    body.appendChild(LL.components.Footer());
 
     LL.sections.initHomeFeaturesProjects(projects);
     LL.sections.initHomeUsp(usp);
     LL.sections.initHomeHashtag(hashtag);
     LL.sections.initHomeCommunity(community);
+    LL.sections.initHomeLastCta(lastCta);
 
     // Preloader phủ trên trang. Hero chỉ bắt đầu reveal khi loader co về nav.
     LL.sections.runPreloader({

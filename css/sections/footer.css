@@ -1,0 +1,182 @@
+/*
+ * css/sections/footer.css. Footer dùng chung (D-19). Frame Figma 1920 (2155:1493), cao 900.
+ * --x và --y là toạ độ trong frame 1920 (không đơn vị), nhân --u1920.
+ */
+.ft {
+  background: var(--color-paper);
+  color: var(--color-primary);
+}
+
+.ft__stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-4) calc(var(--ft-top-size) + var(--space-12));
+}
+
+.ft__lockup {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+}
+
+.ft__tagline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--ft-fs-tagline);
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+.ft__nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-8);
+}
+
+.ft__heading {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--ft-fs-heading);
+  text-transform: uppercase;
+}
+
+.ft__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ft__link {
+  font-family: var(--font-display);
+  font-size: var(--ft-fs-link);
+  line-height: normal;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.ft__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.ft__copy,
+.ft__credit {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--ft-fs-small);
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.ft__credit {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.ft__top {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-8);
+  width: var(--ft-top-size);
+  height: var(--ft-top-size);
+}
+
+.ft__top img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--motion-base) var(--ease-playful);
+}
+
+@media (hover: hover) {
+  .ft__top:hover img {
+    transform: translateY(calc(-1 * var(--space-2)));
+  }
+}
+
+@media (min-width: 1280px) {
+  .ft__stage {
+    display: block;
+    max-width: 1920px;
+    height: calc(900 * var(--u1920));
+    margin-inline: auto;
+    padding: 0;
+  }
+
+  .ft__nav { display: contents; }
+
+  .ft__lockup,
+  .ft__tagline,
+  .ft__col,
+  .ft__copy,
+  .ft__credit,
+  .ft__top {
+    position: absolute;
+    left: calc(var(--x) * var(--u1920));
+    top: calc(var(--y) * var(--u1920));
+  }
+
+  .ft__lockup { --x: 32; --y: 83; width: calc(917 * var(--u1920)); max-width: none; }
+
+  .ft__tagline {
+    --x: 1133;
+    --y: 136;
+    width: calc(490 * var(--u1920));
+    line-height: normal;
+    text-box: trim-both cap alphabetic;
+  }
+
+  /* Tiêu đề cột ở y 646, danh sách ở y 700 (cách 54). */
+  .ft__col { --y: 646; }
+  .ft__col--explore { --x: 32; }
+  .ft__col--connect { --x: 347; }
+  .ft__col--social { --x: 662; }
+
+  .ft__heading {
+    margin: 0;
+    line-height: normal;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .ft__links {
+    position: absolute;
+    left: 0;
+    top: calc(54 * var(--u1920));
+    gap: calc(27 * var(--u1920));
+  }
+
+  .ft__links .ft__link {
+    display: block;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .ft__col--explore .ft__links { width: calc(230 * var(--u1920)); }
+  .ft__col--social .ft__links { width: calc(281 * var(--u1920)); }
+
+  /* Cột connect: cao 120, hai mục dàn đầu cuối. "promote your bran" rộng 197 nên xuống dòng như frame. */
+  .ft__col--connect .ft__links {
+    width: calc(282 * var(--u1920));
+    height: calc(120 * var(--u1920));
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .ft__col--connect li:nth-child(1) .ft__link { width: calc(183 * var(--u1920)); }
+  .ft__col--connect li:nth-child(2) .ft__link { width: calc(197 * var(--u1920)); }
+
+  .ft__copy,
+  .ft__credit { line-height: calc(16.5 * var(--u1920)); white-space: nowrap; }
+  .ft__copy { --x: 1133; --y: 779; }
+  .ft__credit { --x: 1133; --y: 803; gap: 0; }
+  .ft__credit-name { position: absolute; left: calc(218 * var(--u1920)); }
+
+  .ft__top { --x: 1789; --y: 718; right: auto; bottom: auto; }
+}

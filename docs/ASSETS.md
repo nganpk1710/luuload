@@ -130,6 +130,20 @@ Nguồn: `Assets/preloader.rar` (người dùng tải lên GitHub). Bộ `Line 3
 
 | ID | File | Ghi chú |
 |---|---|---|
-| `preloader.logo` | `images/preloader/logo.svg` (214×35) | Từ `preloader/Design/Logo.svg`, khớp node Logo của frame 2357:1661. Khác `Assets/Logo/Logo.svg` (173×42, logo header) |
-| `preloader.texture` | TODO(figma) | Node 2357:1662. Chưa có file |
+| `brand.logo-lockup` | `images/brand/logo-lockup.svg` (214×35) | Từ `preloader/Design/Logo.svg`, khớp node Logo của frame 2357:1661. Khác `Assets/Logo/Logo.svg` (173×42, logo header) |
+| `preloader.background` | `images/preloader/background.webp` (1920×900) | Ảnh người dùng gửi trong chat (nền xanh đã gộp texture node 2357:1662), chuyển WebP |
 | (không dùng) | `Design/*.png`, `Preloader_Final Design.png` | Ảnh đối chiếu. `Loading.png` trong rar bị hỏng (0 byte khi giải nén) |
+
+## Asset Last CTA, footer (2026-11-11)
+
+Nguồn: `Assets/Graphic Element/for 1920px/Last CTA/`, `.../footer/`.
+
+| ID | File | Ghi chú |
+|---|---|---|
+| `last-cta.people-working` | `images/last-cta/people-working.webp` (472×328) | Từ PNG, WebP chất lượng 88 |
+| `last-cta.young-people` | `images/last-cta/young-people.webp` (374×277) | Từ PNG, WebP chất lượng 88 |
+| `last-cta.label-creativity` / `label-connection` | `images/last-cta/label-*.svg` (158×41) | Chữ đã outline, màu xanh lá `#24FC7D` chỉ có trong SVG |
+| `last-cta.stripes`, `last-cta.star-*` | TODO(figma) | Node 2155:1473, 2155:1484, 2155:1486. Chưa có file |
+| `footer.lockup` | `images/footer/shape-footer.svg` (917×442) | Biểu tượng, chữ "Lưu Load", khối màu. Màu `#07009F` khác primary `#0800B2` (D-16) |
+| `footer.back-to-top` | `images/footer/back-to-top.svg` (99×99) | |
+| `brand.logo-lockup` | `images/brand/logo-lockup.svg` | Dùng thêm cho biểu tượng logo header (cắt bằng CSS) |

@@ -1,0 +1,85 @@
+/*
+ * css/sections/home-last-cta.css. Section home.last-cta. Frame Figma 1920 (2155:1472), cao 900.
+ * --x và --y là toạ độ trong frame 1920 (không đơn vị), nhân --u1920.
+ * TODO(figma): nền sọc (Vector 27) và hai hình sao chưa có file, chưa dựng.
+ */
+.lc {
+  background: var(--color-primary);
+  color: var(--color-accent);
+  overflow: hidden;
+}
+
+.lc__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+  padding: var(--space-12) var(--space-4);
+}
+
+.lc__title {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--lc-fs);
+  line-height: 1;
+}
+
+.lc__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--lc-radius);
+}
+
+.lc__label {
+  display: block;
+  width: 158px;
+  height: auto;
+}
+
+@media (min-width: 1280px) {
+  .lc__stage {
+    position: relative;
+    display: block;
+    max-width: 1920px;
+    height: calc(900 * var(--u1920));
+    margin-inline: auto;
+    padding: 0;
+  }
+
+  .lc__title { display: contents; }
+
+  .lc__line,
+  .lc__photo,
+  .lc__label,
+  .lc__cta {
+    position: absolute;
+    left: calc(var(--x) * var(--u1920));
+    top: calc(var(--y) * var(--u1920));
+  }
+
+  .lc__line {
+    white-space: nowrap;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .lc__line--1 { --x: 192; --y: 103; }
+  .lc__line--2 { --x: 192; --y: 315; }
+  .lc__line--3 { --x: 935; --y: 544; }
+
+  /* Ảnh và nhãn nằm trên chữ như frame. */
+  .lc__photo--working { --x: 1259; --y: 113; width: calc(472 * var(--u1920)); }
+  .lc__photo--young { --x: 192; --y: 405; width: calc(374 * var(--u1920)); }
+  .lc__label { width: calc(158 * var(--u1920)); }
+  .lc__label--creativity { --x: 1062; --y: 113; }
+  .lc__label--connection { --x: 616; --y: 641; }
+
+  .lc__cta {
+    --x: 960;
+    --y: 780;
+    translate: -50% 0;
+  }
+}

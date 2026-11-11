@@ -94,3 +94,22 @@ Ghi chú: "CONNECTION" là tiếng Anh, khác "Kết nối" ở CTA. Chờ xác 
 | Ngày | Thay đổi |
 |---|---|
 | 2026-11-10 | Tạo spec từ thiết kế 1920 |
+
+
+## Triển khai (2026-11-11)
+
+Figma 2155:1472 (1920×900, chỉ có 1920). Code: `js/sections/home-last-cta.js`, `css/sections/home-last-cta.css`, token `--lc-*`. Chữ ở `LL.content.home.lastCta`. CTA dùng `nav.cta` (D-09).
+
+| Phần tử | Toạ độ frame 1920 |
+|---|---|
+| "sẵn sàng" | (192, 103), 180px vàng |
+| "kết nối cùng" | (192, 315) |
+| "chúng tôi" | (935, 544) |
+| Ảnh people_working | (1259, 113), 472×328, bo 10 |
+| Ảnh young_people | (192, 405), 374×277, bo 10, nằm trên chữ |
+| Nhãn #creativity | (1062, 113), 158×41 |
+| Nhãn #connection | (616, 641) |
+| CTA | tâm x 960, y 780 |
+
+- TODO(figma): nền sọc (Vector 27, node 2155:1473) và hai hình sao (2155:1484 110×114, 2155:1486 48×48) chưa có file trong `Assets/`, chưa dựng. Starburst xoay (mục 11 MOTION.md) chờ file.
+- Đã kiểm tra: headless 1920×900, section cao 900, không lỗi console. Mobile 390: xếp dọc [ĐỀ XUẤT].

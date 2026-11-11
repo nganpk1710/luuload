@@ -67,10 +67,14 @@
   flex: none;
   width: var(--logo-mark-w);
   height: var(--logo-mark-h);
+  overflow: hidden;
 }
 
+/* Ảnh là lockup đầy đủ (biểu tượng + chữ). Cao bằng biểu tượng, khung chỉ chừa phần biểu tượng. */
 .logo__mark img {
-  width: 100%;
+  display: block;
+  width: auto;
+  max-width: none;
   height: 100%;
 }
 
@@ -93,7 +97,25 @@
   font-size: var(--fs-nav);
   line-height: normal;
   white-space: nowrap;
-  transition: background-color var(--motion-fast) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Hover (Figma 2352:812): chấm vàng 5px ở giữa mép dưới nở thành elip 145x65 phủ kín chip 118x32.
+   Elip đặt sẵn ở kích thước cuối (-16, -16, 145x65), trạng thái nghỉ thu về chấm 5px dưới tâm 18px. */
+.nav-item::before {
+  content: "";
+  position: absolute;
+  left: -13.56%;   /* -16 / 118 */
+  top: -50%;       /* -16 / 32 */
+  width: 122.88%;  /* 145 / 118 */
+  height: 203.13%; /* 65 / 32 */
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transform: translateY(27.69%) scale(0.0345, 0.0769); /* 18/65; 5/145; 5/65 */
+  transition: transform var(--motion-base) var(--ease-out);
 }
 
 .nav-item__text {
@@ -106,13 +128,13 @@
 }
 
 @media (hover: hover) {
-  .nav-item:hover {
-    background: var(--color-accent);
+  .nav-item:hover::before {
+    transform: none;
   }
 }
 
-.nav-item:focus-visible {
-  background: var(--color-accent);
+.nav-item:focus-visible::before {
+  transform: none;
 }
 
 /* Button CTA: khung chữ và knob đứng cạnh nhau (frame Figma). Chuyển động ở button-cta.js. */

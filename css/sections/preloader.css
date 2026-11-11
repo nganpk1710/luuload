@@ -1,7 +1,7 @@
 /*
  * css/sections/preloader.css. Section home.preloader. Bố cục: Figma 2357:1661 (1920x900).
  * Số đo trong frame nhân --u1920 (tokens.css). Thời lượng do preloader.js ghi từ motion.config.js (--pre-*).
- * TODO(figma): lớp texture nền (node 2357:1662, opacity 40%, multiply) chưa có file.
+ * Nền: ảnh người dùng gửi (images/preloader/background.webp), đã gộp màu xanh và texture của node 2357:1662.
  */
 .pre {
   position: fixed;
@@ -16,6 +16,13 @@
   background: var(--color-primary);
   clip-path: inset(0 0 0 0);
   transition: clip-path var(--pre-exit) var(--ease-out);
+}
+
+.pre__bgimg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .pre.is-exit .pre__bg {
@@ -33,14 +40,11 @@
   translate: 0 -50%;
   transition:
     transform var(--pre-exit) var(--ease-out),
-    opacity var(--pre-handoff) var(--ease-out);
+    opacity var(--pre-fade) var(--ease-out) var(--pre-fade-delay);
 }
 
 .pre.is-exit .pre__bar {
   transform: translateY(var(--pre-dy, 0px));
-}
-
-.pre.is-handoff .pre__bar {
   opacity: 0;
 }
 
@@ -135,40 +139,43 @@
   color: var(--color-accent);
 }
 
-/* Hàng graphic: 4 ô, mỗi ô vào và ra theo stagger. Chỉ một hàng hiện. */
-.pre__rows {
+/* 4 ô graphic. Mỗi ô chứa 3 hình chồng nhau (Line 30, 60, 100); JS bật is-on cho hình hiện tại,
+   is-off cho hình đã qua. Hình mới đi lên từ dưới, hình cũ đi tiếp lên trên và mờ đi. */
+.pre__slots {
   position: absolute;
   right: var(--space-2);
   top: 50%;
   translate: 0 -50%;
-  width: calc(var(--pre-tile) * 4 + var(--pre-tile-gap) * 3);
+  display: flex;
+  gap: var(--pre-tile-gap);
   height: var(--pre-tile);
 }
 
-.pre__row {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  gap: var(--pre-tile-gap);
+.pre__slot {
+  position: relative;
+  width: var(--pre-tile);
+  height: var(--pre-tile);
 }
 
 .pre__tile {
+  position: absolute;
+  inset: 0;
   display: block;
-  width: var(--pre-tile);
-  height: var(--pre-tile);
+  width: 100%;
+  height: 100%;
   opacity: 0;
   transform: translateY(var(--pre-tile-offset));
   transition:
-    opacity var(--pre-tile-in) var(--ease-out) calc(var(--pre-i) * var(--pre-tile-stagger)),
-    transform var(--pre-tile-in) var(--ease-out) calc(var(--pre-i) * var(--pre-tile-stagger));
+    opacity var(--pre-tile-in) var(--ease-out),
+    transform var(--pre-tile-in) var(--ease-out);
 }
 
-.pre__row.is-on .pre__tile {
+.pre__tile.is-on {
   opacity: 1;
   transform: none;
 }
 
-.pre__row.is-off .pre__tile {
+.pre__tile.is-off {
   opacity: 0;
   transform: translateY(calc(-1 * var(--pre-tile-offset)));
 }
@@ -200,7 +207,7 @@ body.is-loading {
     top: calc(8 * var(--u1920));
   }
 
-  .pre__rows {
+  .pre__slots {
     left: calc(317 * var(--u1920));
     right: auto;
   }

@@ -196,4 +196,5 @@ Chỉ để đối chiếu với bản nháp. Xóa sau khi code đã đổi tên
 | Ngày | Token hoặc component | Thay đổi | Lý do | Đã đồng bộ Figma |
 |---|---|---|---|---|
 | 2026-11-11 | `--color-orange` `#ff6932`, `--color-sky` `#32bbff` | Thêm | Viền pill hashtag (frame 2155:1230) | Chưa: Figma Variables của frame trả rỗng |
+| 2026-11-11 | `--radius-logo`, `--radius-chip`, `--radius-cta` (≥1440) | Ở 1920: 10 / 9.476 / 7.581 → 8 / 8 / 8 | Figma Hero 2363:2492 | Theo frame |
 | 2026-11-11 | `--color-primary-deep` `#08018b`, `--color-divider` `#b8b8b8` | Thêm | Track, khối graphic và viền preloader (frame 2357:1661) | Chưa: Figma Variables của frame trả rỗng |

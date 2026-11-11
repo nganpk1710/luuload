@@ -141,7 +141,7 @@ Knob đi qua vùng chữ ở giữa hành trình. Nếu trên 390px chữ khó �
 
 | Phần tử | Trạng thái | Chuyển động |
 |---|---|---|
-| Nav chip | Hover, focus | Nền → `accent`, `duration.fast`. Không di chuyển |
+| Nav chip | Hover, focus-visible | Figma 2352:812: chấm vàng 5px ở giữa mép dưới nở thành elip 145×65 phủ kín chip (transform, `duration.base`, `easing.out`). Rời chuột thì thu về chấm. Chip đang ở trang hiện tại: nền vàng cố định |
 | Category link | Hover, focus | Mũi tên dịch phải 4px, `easing.playful`, `duration.base` |
 
 ## 14. Ngoài phạm vi 01a
@@ -179,15 +179,16 @@ Preloader rèm, logo FLIP, slider tự động, overlay FLIP từ card, chuyển
 
 ## 10. Preloader (home.preloader)
 
-Bố cục: Figma 2357:1661 (frame không có dữ liệu motion). Nhịp: video chandebootcamp.com, không mosaic. Số trong `motion.config.js` mục `preloader` là [ĐỀ XUẤT]. Bản 2026-11-11 (lần 2) thay bản đầu: thanh không còn nhảy mốc, graphic không còn lặp khung.
+Bố cục: Figma 2357:1661 (frame không có dữ liệu motion). Nhịp: video chandebootcamp.com, không mosaic. Số trong `motion.config.js` mục `preloader` là [ĐỀ XUẤT]. Bản lần 3 (2026-11-11): ba nhịp rõ ràng, ô graphic chạy cùng thanh, thoát không dừng.
 
 | Pha | Mốc (ms, tính từ khi loader chạy) | Việc |
 |---|---|---|
-| Vào | 0 đến `intro` (600) | Ba đoạn của dải fade và dịch lên `tileOffset`, trễ `stagger.groups`. Chữ "Loading", "creative / community" reveal theo dòng |
-| Tiến độ | `intro` đến `intro + count` (600 đến 4000) | Fill chạy liên tục bằng `easing.inOut`. Số % đi theo fill |
-| Graphic | Khi số chạm 30, 60, 100 | Hàng cũ ra (dịch lên, mờ), hàng mới vào (dịch từ dưới, rõ dần). Mỗi ô trễ `tileStagger` (80), mỗi ô `tileIn` (500), `easing.out` |
-| Giữ | 4000 đến 4400 | Giữ 100% |
-| Thoát | 4400 đến 5300 | Nền xanh reveal từ trên xuống (clip-path, mép trên đi xuống) và dải đi lên vị trí header bằng translateY, `easing.out`, `exit` (900). Hero bắt đầu reveal cùng lúc |
-| Bàn giao | 5300 đến 5600 | Dải mờ đi (`handoff`), header thật ở dưới |
+| Vào | 0 đến `intro` (600) | Ba đoạn của dải fade và dịch lên, trễ `stagger.groups`. Chữ reveal theo dòng |
+| Nhịp 1 | 600 đến 1700 (`phases[0]`) | Fill 0 → 30%, `easing.inOut` trong nhịp (tăng tốc rồi chậm lại ở mốc). 4 ô lần lượt hiện hình Line 30 khi fill của nhịp đi qua 1/8, 3/8, 5/8, 7/8 quãng |
+| Nhịp 2 | 1700 đến 2800 (`phases[1]`) | Fill 30 → 60%. 4 ô lần lượt đổi sang Line 60 cùng quy tắc |
+| Nhịp 3 | 2800 đến 4200 (`phases[2]`) | Fill 60 → 100%. 4 ô lần lượt đổi sang Line 100 |
+| Giữ | 4200 đến 4600 (`hold`) | Giữ 100% |
+| Thoát | 4600 đến 5600 (`exit`) | Nền reveal từ trên xuống (clip-path) và dải đi lên căn giữa logo header (translateY, `easing.out`). Dải mờ dần từ `fadeFrom` (45%) của quãng đi, nên tới nơi là đã mờ hết, không có nhịp dừng. Header và hero reveal ngay khi thoát bắt đầu |
 
+- Đổi hình trong ô: hình mới đi lên từ dưới `tileOffset` và rõ dần, hình cũ đi tiếp lên trên và mờ, `tileIn` (520), `easing.out`.
 - Giảm chuyển động: không dựng loader.
