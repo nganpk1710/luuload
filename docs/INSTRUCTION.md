@@ -118,6 +118,7 @@ Quy tắc phụ:
 
 | Ngày | Thay đổi |
 |---|---|
+| 2026-11-11 | `home.features-projects`: thu card từ 300/400px xuống 220/300px để xoắn nằm trong khung, `scrollFactor` 0.7 lên 1.4 |
 | 2026-11-11 | `home.features-projects`: viết lại gallery thành xoắn ốc (helix) theo Spiral Gallery thay cho trống quay. Thêm nền khung gallery. Khối `gallery` trong `motion.config.js` đổi sang `cardsPerTurn`, `gapRatio`, `pitchRatio`, `scrollFactor` |
 | 2026-11-11 | `home.features-projects`: viết lại gallery thành trống quay 3D xoắn ốc, không đổi opacity (theo Drum Gallery của người dùng). Sân khấu cao 100svh, hộp nội dung co để CTA không bị cắt. Đổi khối `gallery` trong `motion.config.js` (cấu trúc mới, do chính section này thêm hôm trước) |
 | 2026-11-10 | Dựng `home.features-projects` theo frame 2221:375 và 2295:339: pinned gallery GSAP, token `--fp-*`, block `gallery` trong `motion.config.js` (thêm mới, không đổi giá trị cũ), spec `home-features-projects.md`. Ngưỡng pin 1280px thay 1024px |

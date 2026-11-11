@@ -273,7 +273,7 @@
  * Section home.features-projects. Nguồn: Figma Features projects 1920 (2221:375) và 1440 (2295:339).
  * Chiều cao frame 900 ở cả hai. Cỡ chữ tiêu đề dùng lại --fs-display (100 đến 140, khớp frame).
  * Card gallery: frame chỉ có ảnh chụp tham chiếu, không có kích thước card, nên
- * --fp-card-w là [ĐỀ XUẤT] (TODO(figma)).
+ * --fp-card-w là [ĐỀ XUẤT] (TODO(figma)): chọn ~27% bề rộng khung gallery để cả xoắn (bán kính R = 1.325 w) nằm gọn trong khung, không bị cắt.
  * Dưới 1280: gallery xếp dọc, không pin [ĐỀ XUẤT].
  */
 :root {
@@ -302,7 +302,7 @@
     --fp-lh-lead: min(30px, 2.083vw);
     --fp-content-gap: min(91px, 6.319vw);
     --fp-gallery-w: min(821px, 57.014vw);
-    --fp-card-w: min(300px, 20.833vw);
+    --fp-card-w: min(220px, 15.278vw);
   }
 }
 
@@ -317,6 +317,6 @@
     --fp-lh-lead: 30px;
     --fp-content-gap: 91px;
     --fp-gallery-w: clamp(821px, calc(821px + (100vw - 1440px) * 0.58333), 1101px);
-    --fp-card-w: clamp(300px, calc(300px + (100vw - 1440px) * 0.20833), 400px);
+    --fp-card-w: clamp(220px, calc(220px + (100vw - 1440px) * 0.16667), 300px);
   }
 }

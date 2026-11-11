@@ -167,6 +167,7 @@ Preloader rèm, logo FLIP, slider tự động, overlay FLIP từ card, chuyển
 
 - Nguồn: `HUONG-DAN-KY-THUAT.md` (Spiral Gallery) do người dùng gửi, tham chiếu chuyển động das.info.vn. Thông số ở `LL.motion.gallery`.
 - Chỉ chạy khi `>= 1280px` và `prefers-reduced-motion: no-preference`. Ngoài ra là layout xếp dọc, không transform.
+- Bán kính xoắn phải vừa trong khung gallery (card rộng ~27% khung). `scrollFactor` 1.4 thay 0.7 của hướng dẫn gốc.
 - Một tween gắn scroll (`scrub`): xoắn dâng `y` từ 0 đến `−(N−1)·P` và xoay `rotateY` từ 0 đến `(N−1)·STEP`. Không đổi opacity.
 - Hover, focus: ảnh trong card scale `--fp-hover-scale` (1.03), `duration.base`, `easing.playful`. Giảm chuyển động thì không pin nên không có hiệu ứng này.
 - Chỉ `transform`. Mở rộng so với mục 9 (parallax ngoài 01a): người dùng yêu cầu trực tiếp.

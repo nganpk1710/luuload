@@ -54,7 +54,7 @@
     cardsPerTurn: 7,                   // số card mỗi vòng xoắn (14 card = 2 vòng)
     gapRatio: 0.15,                    // khoảng hở ngang giữa hai card kề nhau, theo chiều rộng card
     pitchRatio: 0.55,                  // bước cao mỗi card, theo chiều cao card (nhỏ hơn 1: các vòng chồng nhau)
-    scrollFactor: 0.7,                 // quãng pin = (N-1) x bước cao x hệ số này
+    scrollFactor: 1.4,                 // quãng pin = (N-1) x bước cao x hệ số này (hướng dẫn gốc 0.7; tăng để thấy rõ quá trình đi lên)
     scrub: 1,                          // giây đuổi theo scroll
     anticipatePin: 1
   };

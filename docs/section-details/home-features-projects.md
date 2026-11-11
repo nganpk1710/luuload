@@ -26,7 +26,8 @@ Từ 1440 trở lên nội suy tuyến tính, dưới 1440 co theo viewport (tr�
 
 ## 2. Hành vi
 
-- `>= 1280px` và cho phép chuyển động: JS thêm `.is-pinned`. 14 card nằm trên một đường xoắn ốc (helix) quanh trục dọc: mỗi card lệch `STEP = 360/7` độ quanh trục Y và một bước cao `P = h × 0.55`, cùng bán kính `R = w(1+g) / (2 sin(π/7))`. Scroll làm cả xoắn dâng (`y`) và xoay (`rotateY`) cùng tỉ lệ nên card kế tiếp về mặt trước đúng lúc card hiện tại rời đi. Pin `.fp__pin`, quãng cuộn `(N−1) × P × 0.7`.
+- `>= 1280px` và cho phép chuyển động: JS thêm `.is-pinned`. 14 card nằm trên một đường xoắn ốc (helix) quanh trục dọc: mỗi card lệch `STEP = 360/7` độ quanh trục Y và một bước cao `P = h × 0.55`, cùng bán kính `R = w(1+g) / (2 sin(π/7))`. Scroll làm cả xoắn dâng (`y`) và xoay (`rotateY`) cùng tỉ lệ nên card kế tiếp về mặt trước đúng lúc card hiện tại rời đi. Pin `.fp__pin`, quãng cuộn `(N−1) × P × 1.4` (hướng dẫn gốc 0.7, tăng gấp đôi để thấy rõ quá trình đi lên).
+- Card rộng khoảng 27% bề rộng khung (220px ở 1440, 300px ở 1920), nên bán kính xoắn `R = 1.325·w` vừa khít khung: cả xoắn nằm trong khung, card không bị cắt ra ngoài và thấy được quá trình dâng lên (đo bằng Chromium: không card nào tràn mép khung ở 1920, 1440, 1366).
 - Không đổi opacity. Card quay lưng về phía người xem ẩn bằng `backface-visibility`.
 - Hover và focus: chỉ phóng ảnh bên trong `scale(--fp-hover-scale)`, không đụng transform của card.
 - Nền khung gallery: `images/features-projects/gallery-background.png` (1101×900, đứng yên sau xoắn, `object-fit: cover`).
