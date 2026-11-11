@@ -2,7 +2,7 @@
  * js/sections/home-features-projects.js
  * Section ID: home.features-projects. Spec: docs/section-details/home-features-projects.md.
  * Nội dung: LL.content.home.featuresProjects và LL.content.projects. Chuyển động: LL.motion.gallery.
- * Pinned gallery (trống quay 3D) dùng GSAP + ScrollTrigger (D-14, CDN pin version). Thiếu GSAP, mobile hoặc giảm
+ * Pinned gallery (xoắn ốc 3D) dùng GSAP + ScrollTrigger (D-14, CDN pin version). Thiếu GSAP, mobile hoặc giảm
  * chuyển động thì giữ layout xếp dọc (không có class is-pinned).
  */
 (function (global) {
@@ -16,6 +16,7 @@
     var copy = LL.content.home.featuresProjects;
     var projects = LL.content.projects.items;
     var nav = LL.content.nav;
+    var bg = LL.content.projects.background;
 
     var cards = projects.map(function (p, i) {
       var item = h('li', { class: 'card' }, [
@@ -49,6 +50,10 @@
           ])
         ]),
         h('div', { class: 'gallery' }, [
+          h('img', {
+            class: 'gallery__bg',
+            attrs: { src: bg.src, alt: '', width: String(bg.width), height: String(bg.height), 'aria-hidden': 'true', decoding: 'async' }
+          }),
           h('ul', { class: 'gallery__track', attrs: { 'aria-label': copy.galleryLabel.value } }, cards)
         ])
       ])
@@ -78,27 +83,26 @@
     gsap.registerPlugin(ScrollTrigger);
 
     var pin = root.querySelector('.fp__pin');
-    var gal = root.querySelector('.gallery');
-    var drum = root.querySelector('.gallery__track');
-    var cards = gsap.utils.toArray('.card', drum);
+    var spiral = root.querySelector('.gallery__track');
+    var cards = gsap.utils.toArray('.card', spiral);
     var N = cards.length;
     if (N < 3) return;
 
-    var STEP = 360 / N;   // góc giữa hai card kề nhau trên vòng
+    var STEP = 360 / cfg.cardsPerTurn; // góc lệch giữa hai card kề nhau trên xoắn
+    var R = 0; // bán kính xoắn
+    var P = 0; // bước cao giữa hai card kề nhau
 
-    // Bán kính trống: dây cung giữa hai card kề nhau = chiều cao card x (1 + khoảng hở).
-    // Đặt lại vị trí card. Gọi khi khởi tạo, resize và sau khi ảnh tải xong.
+    // Đo card rồi đặt vị trí từng card trên xoắn. Gọi khi khởi tạo, resize, ảnh tải xong.
+    // Dây cung giữa hai card kề nhau: 2R.sin(STEP/2) = w.(1 + gapRatio)
     function layout() {
+      var w = cards[0].offsetWidth;
       var h = cards[0].offsetHeight;
-      var R = (h * (1 + cfg.gapRatio)) / (2 * Math.sin(Math.PI / N));
-      var maxX = Math.max(0, (gal.clientWidth - cards[0].offsetWidth) / 2) * cfg.spiral.xAmp;
-      gsap.set(drum, { z: -R }); // card 0 nằm đúng z = 0, kích thước thật
+      R = (w * (1 + cfg.gapRatio)) / (2 * Math.sin(Math.PI / cfg.cardsPerTurn));
+      P = h * cfg.pitchRatio;
+      // Card i: xuống i.P, xoay -i.STEP quanh trục Y, rồi đẩy ra bán kính R.
       cards.forEach(function (card, i) {
-        var phase = (i / N) * Math.PI * 2 * cfg.spiral.turns;
-        var x = maxX * Math.sin(phase);
-        var twist = cfg.spiral.twistDeg * Math.cos(phase);
         card.style.transform =
-          'translateX(' + x.toFixed(2) + 'px) rotateX(' + (-i * STEP).toFixed(3) + 'deg) translateZ(' + R.toFixed(2) + 'px) rotateY(' + twist.toFixed(2) + 'deg)';
+          'translateY(' + (i * P).toFixed(2) + 'px) rotateY(' + (-i * STEP).toFixed(3) + 'deg) translateZ(' + R.toFixed(2) + 'px)';
       });
     }
 
@@ -108,17 +112,18 @@
       root.classList.add('is-pinned');
       layout();
 
-      function scrollDistance() { return Math.round(pin.clientHeight * (N - 1) * cfg.scrollPerCard); }
-
-      gsap.to(drum, {
-        rotateX: (N - 1) * STEP, // đến khi card cuối đứng phía trước
+      // Dâng cả xoắn và xoay cùng tỉ lệ: một bước P đi kèm một bước STEP,
+      // nên card kế tiếp về mặt trước đúng lúc card hiện tại rời đi.
+      gsap.to(spiral, {
+        y: function () { return -(N - 1) * P; },
+        rotateY: (N - 1) * STEP,
         ease: 'none',
         scrollTrigger: {
           trigger: root,
           pin: pin,
           pinSpacing: true,
           start: 'top top',
-          end: function () { return '+=' + scrollDistance(); },
+          end: function () { return '+=' + Math.round((N - 1) * P * cfg.scrollFactor); },
           scrub: cfg.scrub,
           anticipatePin: cfg.anticipatePin,
           invalidateOnRefresh: true,
@@ -129,7 +134,7 @@
       return function () {
         root.classList.remove('is-pinned');
         cards.forEach(function (card) { card.style.transform = ''; });
-        gsap.set(drum, { clearProps: 'transform' });
+        gsap.set(spiral, { clearProps: 'transform' });
       };
     });
 

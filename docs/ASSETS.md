@@ -46,7 +46,8 @@ Logo là SVG đã outline chữ. Logo mark (hình người trong khối vàng) c
 | `deco.starburst` | Hình sao nhiều cạnh, xanh nhạt | `home.last-cta` | `TODO(asset)` |
 | `deco.footer-blocks` | Mosaic khối màu chân trang | `home.footer` | `TODO(asset)` |
 | `deco.usp-badge` | Hai icon logo mark nhỏ cạnh USP | `home.usp` | `TODO(asset)` |
-| `deco.wireframe` | Đường nét mảnh (wireframe) nền showcase và gallery project | `home.showcase`, `home.features-projects` | `TODO(asset)` |
+| `deco.wireframe` | Đường nét mảnh (wireframe) nền showcase | `home.showcase` | `TODO(asset)` |
+| `deco.gallery-bg` | Nền khung gallery project, 1101×900, `images/features-projects/gallery-background.png` (nguồn: `Assets/Graphic Element/for 1920px/Gallery projects scroll_background.png`) | `home.features-projects` | Có bản 1920. `TODO(asset)` bản 1440 |
 
 ## 5. Ảnh (chưa có)
 

@@ -279,7 +279,8 @@
 :root {
   --fp-h: 900px;
   --fp-stage-h: 100svh; /* pin đúng chiều cao viewport. Frame cao 900, khớp tuyệt đối khi viewport 900 */
-  --fp-perspective: 1600px;
+  --fp-perspective: 1400px;
+  --fp-hover-scale: 1.03; /* MOTION.md mục 8: minh họa trong thẻ scale 1.03 */
   --fp-pad-l: var(--layout-margin);
   --fp-fs-lead: var(--fs-lead);
   --fp-lh-lead: var(--lh-lead);

@@ -30,6 +30,8 @@
     status: 'pending',
     decision: 'D-20',
     // --x theo guide: 0% / 14% luân phiên. TODO(figma): offset thật theo frame.
+    // Nền khung gallery (trang trí, alt rỗng). Chỉ có bản 1920 (1101x900). TODO(asset): bản riêng cho 1440 (khung 821x900).
+    background: { src: 'images/features-projects/gallery-background.png', width: 1101, height: 900 },
     items: items.map(function (it, i) {
       return {
         id: it[0],

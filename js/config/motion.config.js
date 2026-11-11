@@ -46,21 +46,17 @@
     pressScale: 0.97     // scale khi nhấn
   };
 
-  // Pinned gallery dạng trống quay 3D (home.features-projects). Cơ chế theo HUONG-DAN-KY-THUAT.md
-  // (Drum Gallery) do người dùng gửi. Card nằm trên vòng tròn trong mặt phẳng YZ, scroll xoay vòng quanh trục X.
-  // Không đổi opacity. Toàn bộ số là [ĐỀ XUẤT], chỉnh khi xem trên thiết bị.
+  // Pinned gallery dạng xoắn ốc 3D (home.features-projects). Cơ chế theo HUONG-DAN-KY-THUAT.md (Spiral Gallery)
+  // do người dùng gửi. 14 card nằm trên một đường xoắn ốc quanh trục dọc, scroll làm xoắn vừa dâng vừa xoay.
+  // Tham số tính hình học: R từ chiều rộng card, P từ chiều cao card. Toàn bộ là [ĐỀ XUẤT], chỉnh khi xem trên thiết bị.
   var gallery = {
     minWidth: '(min-width: 1280px)',  // trùng mốc bố cục; hướng dẫn gốc dùng 1024px
-    gapRatio: 0.12,                    // khoảng hở giữa hai card kề nhau, theo chiều cao card
-    scrollPerCard: 0.8,                // quãng cuộn mỗi card, đơn vị chiều cao viewport
+    cardsPerTurn: 7,                   // số card mỗi vòng xoắn (14 card = 2 vòng)
+    gapRatio: 0.15,                    // khoảng hở ngang giữa hai card kề nhau, theo chiều rộng card
+    pitchRatio: 0.55,                  // bước cao mỗi card, theo chiều cao card (nhỏ hơn 1: các vòng chồng nhau)
+    scrollFactor: 0.7,                 // quãng pin = (N-1) x bước cao x hệ số này
     scrub: 1,                          // giây đuổi theo scroll
-    anticipatePin: 1,
-    // Xoắn ốc: mỗi card lệch ngang theo sin của góc trên vòng và xoay nhẹ quanh trục dọc của chính nó.
-    spiral: {
-      xAmp: 0.8,      // biên độ lệch ngang, tỉ lệ nửa phần rộng còn lại của khung (0 đến 1)
-      turns: 1.5,     // số chu kỳ lệch ngang trên toàn vòng
-      twistDeg: 16    // góc xoay quanh trục dọc của card (độ)
-    }
+    anticipatePin: 1
   };
 
   var media = {

@@ -89,7 +89,7 @@
   transform: translateY(var(--space-4));
 }
 
-/* ---------- Lớp 2: pinned, gallery dạng trống quay 3D (>= 1280px, JS bật) ---------- */
+/* ---------- Lớp 2: pinned, gallery dạng xoắn ốc 3D (>= 1280px, JS bật) ---------- */
 
 .fp.is-pinned .fp__pin {
   height: var(--fp-stage-h);
@@ -130,7 +130,7 @@
   perspective: var(--fp-perspective);
 }
 
-/* Track là tâm của trống: kích thước 0, đặt giữa khung. */
+/* Track là trục xoắn: kích thước 0, đặt giữa khung. */
 .fp.is-pinned .gallery__track {
   position: absolute;
   left: 50%;
@@ -144,7 +144,7 @@
   will-change: transform;
 }
 
-/* Card neo vào tâm trống. Vị trí và góc do JS gán inline. Không đổi opacity (yêu cầu thiết kế). */
+/* Card neo vào trục xoắn. Vị trí và góc do JS gán inline. Không đổi opacity (yêu cầu thiết kế). */
 .fp.is-pinned .card {
   position: absolute;
   left: 0;
@@ -153,7 +153,7 @@
   height: var(--fp-card-h);
   margin: calc(var(--fp-card-h) / -2) 0 0 calc(var(--fp-card-w) / -2);
   transform-origin: 50% 50%;
-  backface-visibility: hidden; /* card ở mặt sau trống thì ẩn */
+  backface-visibility: hidden; /* card quay lưng về phía người xem thì ẩn */
   will-change: transform;
 }
 
@@ -165,6 +165,31 @@
 
 .fp.is-pinned .card img {
   aspect-ratio: auto;
+  transition: transform var(--motion-base) var(--ease-playful);
 }
 
-/* TODO(asset): nền wireframe (ASSETS.md deco.wireframe). Frame Figma chỉ có ảnh chụp tham chiếu, chưa có file SVG. */
+/* Hover và focus: chỉ phóng ảnh bên trong, không đổi transform của card (tránh xung đột với vị trí xoắn). */
+@media (hover: hover) {
+  .fp.is-pinned .card:hover img {
+    transform: scale(var(--fp-hover-scale));
+  }
+}
+
+.fp.is-pinned .card:focus-within img {
+  transform: scale(var(--fp-hover-scale));
+}
+
+/* Nền khung gallery: ảnh trang trí đứng yên phía sau xoắn. Mặc định ẩn (layout xếp dọc không dùng). */
+.gallery__bg {
+  display: none;
+}
+
+.fp.is-pinned .gallery__bg {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}

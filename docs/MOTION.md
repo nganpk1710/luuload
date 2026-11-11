@@ -163,9 +163,10 @@ Preloader rèm, logo FLIP, slider tự động, overlay FLIP từ card, chuyển
 - [ ] Overshoot ≤ 4% ở mọi `playful`.
 - [ ] Thời lượng CTA 1000ms được duyệt trên thiết bị thật (D-10).
 
-## 12. Pinned gallery: trống quay 3D (home.features-projects)
+## 12. Pinned gallery: xoắn ốc 3D (home.features-projects)
 
-- Nguồn: `HUONG-DAN-KY-THUAT.md` (Drum Gallery) do người dùng gửi, tham chiếu chuyển động das.info.vn. Thông số ở `LL.motion.gallery`.
+- Nguồn: `HUONG-DAN-KY-THUAT.md` (Spiral Gallery) do người dùng gửi, tham chiếu chuyển động das.info.vn. Thông số ở `LL.motion.gallery`.
 - Chỉ chạy khi `>= 1280px` và `prefers-reduced-motion: no-preference`. Ngoài ra là layout xếp dọc, không transform.
-- Một tween gắn scroll (`scrub`): trống xoay `rotateX` từ 0 đến `(N−1) × 360/N`. Card đi lên theo cung tròn, lệch ngang theo `spiral`. Không đổi opacity.
+- Một tween gắn scroll (`scrub`): xoắn dâng `y` từ 0 đến `−(N−1)·P` và xoay `rotateY` từ 0 đến `(N−1)·STEP`. Không đổi opacity.
+- Hover, focus: ảnh trong card scale `--fp-hover-scale` (1.03), `duration.base`, `easing.playful`. Giảm chuyển động thì không pin nên không có hiệu ứng này.
 - Chỉ `transform`. Mở rộng so với mục 9 (parallax ngoài 01a): người dùng yêu cầu trực tiếp.
