@@ -278,13 +278,14 @@
  */
 :root {
   --fp-h: 900px;
-  --fp-stage-h: max(var(--fp-h), 100svh);
-  --fp-perspective: 1400px;
+  --fp-stage-h: 100svh; /* pin đúng chiều cao viewport. Frame cao 900, khớp tuyệt đối khi viewport 900 */
+  --fp-perspective: 1600px;
   --fp-pad-l: var(--layout-margin);
   --fp-fs-lead: var(--fs-lead);
   --fp-lh-lead: var(--lh-lead);
   --fp-content-gap: var(--space-8);
   --fp-card-w: min(100%, 560px);
+  --fp-card-h: calc(var(--fp-card-w) * 1.25); /* tỉ lệ 4:5 */
   --fp-gap: var(--space-12);
 }
 
@@ -301,7 +302,6 @@
     --fp-content-gap: min(91px, 6.319vw);
     --fp-gallery-w: min(821px, 57.014vw);
     --fp-card-w: min(300px, 20.833vw);
-    --fp-gap: calc(var(--fp-card-w) * -0.3); /* card chồng lên nhau như frame tham chiếu */
   }
 }
 

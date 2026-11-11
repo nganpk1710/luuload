@@ -46,24 +46,21 @@
     pressScale: 0.97     // scale khi nhấn
   };
 
-  // Pinned gallery (home.features-projects). Tham chiếu chuyển động: das.info.vn (người dùng chỉ định).
-  // Đơn vị timeline là tỉ lệ 0 đến 1 của quãng pin, không phải ms. Toàn bộ là [ĐỀ XUẤT], chỉnh khi xem trên thiết bị.
+  // Pinned gallery dạng trống quay 3D (home.features-projects). Cơ chế theo HUONG-DAN-KY-THUAT.md
+  // (Drum Gallery) do người dùng gửi. Card nằm trên vòng tròn trong mặt phẳng YZ, scroll xoay vòng quanh trục X.
+  // Không đổi opacity. Toàn bộ số là [ĐỀ XUẤT], chỉnh khi xem trên thiết bị.
   var gallery = {
     minWidth: '(min-width: 1280px)',  // trùng mốc bố cục; hướng dẫn gốc dùng 1024px
-    cardSpan: 0.35,                    // độ dài hiệu ứng mỗi card trên timeline (0 đến 1)
+    gapRatio: 0.12,                    // khoảng hở giữa hai card kề nhau, theo chiều cao card
+    scrollPerCard: 0.8,                // quãng cuộn mỗi card, đơn vị chiều cao viewport
     scrub: 1,                          // giây đuổi theo scroll
     anticipatePin: 1,
-    from: { rotateY: 78, zOffset: -220, scale: 0.92, opacity: 0.35 },  // lúc card vào: gần như nghiêng cạnh
-    to: { rotateY: 16, scale: 1, opacity: 1 },                          // trạng thái nghỉ: nghiêng nhẹ như frame
-    // Lặp vòng theo chỉ số card. x là margin-left theo % bề ngang khung, z là độ sâu (px).
-    pattern: [
-      { x: '2%', z: 0 },
-      { x: '46%', z: -120 },
-      { x: '20%', z: -240 },
-      { x: '62%', z: -60 },
-      { x: '8%', z: -180 },
-      { x: '38%', z: 0 }
-    ]
+    // Xoắn ốc: mỗi card lệch ngang theo sin của góc trên vòng và xoay nhẹ quanh trục dọc của chính nó.
+    spiral: {
+      xAmp: 0.8,      // biên độ lệch ngang, tỉ lệ nửa phần rộng còn lại của khung (0 đến 1)
+      turns: 1.5,     // số chu kỳ lệch ngang trên toàn vòng
+      twistDeg: 16    // góc xoay quanh trục dọc của card (độ)
+    }
   };
 
   var media = {

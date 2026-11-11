@@ -118,6 +118,7 @@ Quy tắc phụ:
 
 | Ngày | Thay đổi |
 |---|---|
+| 2026-11-11 | `home.features-projects`: viết lại gallery thành trống quay 3D xoắn ốc, không đổi opacity (theo Drum Gallery của người dùng). Sân khấu cao 100svh, hộp nội dung co để CTA không bị cắt. Đổi khối `gallery` trong `motion.config.js` (cấu trúc mới, do chính section này thêm hôm trước) |
 | 2026-11-10 | Dựng `home.features-projects` theo frame 2221:375 và 2295:339: pinned gallery GSAP, token `--fp-*`, block `gallery` trong `motion.config.js` (thêm mới, không đổi giá trị cũ), spec `home-features-projects.md`. Ngưỡng pin 1280px thay 1024px |
 | 2026-11-10 | D-14 chốt: nạp GSAP 3.12.5 + ScrollTrigger (CDN) cho pinned gallery. Ảnh project: crop 4:5, WebP, thứ tự ngẫu nhiên cố định, copy tạm pending |
 | 2026-11-10 | v1: bộ tài liệu, tokens, motion config, nội dung trang chủ đồng bộ từ thiết kế 1920. Thêm 2 section, D-16 đến D-23 |

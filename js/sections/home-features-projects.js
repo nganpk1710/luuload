@@ -2,7 +2,7 @@
  * js/sections/home-features-projects.js
  * Section ID: home.features-projects. Spec: docs/section-details/home-features-projects.md.
  * Nội dung: LL.content.home.featuresProjects và LL.content.projects. Chuyển động: LL.motion.gallery.
- * Pinned gallery dùng GSAP + ScrollTrigger (D-14, CDN pin version). Thiếu GSAP, mobile hoặc giảm
+ * Pinned gallery (trống quay 3D) dùng GSAP + ScrollTrigger (D-14, CDN pin version). Thiếu GSAP, mobile hoặc giảm
  * chuyển động thì giữ layout xếp dọc (không có class is-pinned).
  */
 (function (global) {
@@ -16,11 +16,9 @@
     var copy = LL.content.home.featuresProjects;
     var projects = LL.content.projects.items;
     var nav = LL.content.nav;
-    var pattern = LL.motion.gallery.pattern;
 
     var cards = projects.map(function (p, i) {
-      var slot = pattern[i % pattern.length];
-      var item = h('li', { class: 'card', style: { '--x': slot.x }, dataset: { z: String(slot.z) } }, [
+      var item = h('li', { class: 'card' }, [
         h('figure', null, [
           h('img', {
             attrs: {
@@ -80,46 +78,59 @@
     gsap.registerPlugin(ScrollTrigger);
 
     var pin = root.querySelector('.fp__pin');
-    var track = root.querySelector('.gallery__track');
-    var cards = gsap.utils.toArray('.card', track);
-    var n = cards.length;
-    if (n < 2) return;
+    var gal = root.querySelector('.gallery');
+    var drum = root.querySelector('.gallery__track');
+    var cards = gsap.utils.toArray('.card', drum);
+    var N = cards.length;
+    if (N < 3) return;
 
-    // Quãng pin = phần track vượt quá chiều cao sân khấu.
-    function distance() { return Math.max(0, track.scrollHeight - pin.clientHeight); }
+    var STEP = 360 / N;   // góc giữa hai card kề nhau trên vòng
+
+    // Bán kính trống: dây cung giữa hai card kề nhau = chiều cao card x (1 + khoảng hở).
+    // Đặt lại vị trí card. Gọi khi khởi tạo, resize và sau khi ảnh tải xong.
+    function layout() {
+      var h = cards[0].offsetHeight;
+      var R = (h * (1 + cfg.gapRatio)) / (2 * Math.sin(Math.PI / N));
+      var maxX = Math.max(0, (gal.clientWidth - cards[0].offsetWidth) / 2) * cfg.spiral.xAmp;
+      gsap.set(drum, { z: -R }); // card 0 nằm đúng z = 0, kích thước thật
+      cards.forEach(function (card, i) {
+        var phase = (i / N) * Math.PI * 2 * cfg.spiral.turns;
+        var x = maxX * Math.sin(phase);
+        var twist = cfg.spiral.twistDeg * Math.cos(phase);
+        card.style.transform =
+          'translateX(' + x.toFixed(2) + 'px) rotateX(' + (-i * STEP).toFixed(3) + 'deg) translateZ(' + R.toFixed(2) + 'px) rotateY(' + twist.toFixed(2) + 'deg)';
+      });
+    }
 
     var mm = gsap.matchMedia();
     mm.add({ motion: '(prefers-reduced-motion: no-preference) and ' + cfg.minWidth }, function (ctx) {
       if (!ctx.conditions.motion) return;
       root.classList.add('is-pinned');
+      layout();
 
-      var tl = gsap.timeline({
-        defaults: { ease: 'none' },
+      function scrollDistance() { return Math.round(pin.clientHeight * (N - 1) * cfg.scrollPerCard); }
+
+      gsap.to(drum, {
+        rotateX: (N - 1) * STEP, // đến khi card cuối đứng phía trước
+        ease: 'none',
         scrollTrigger: {
           trigger: root,
           pin: pin,
           pinSpacing: true,
           start: 'top top',
-          end: function () { return '+=' + distance(); },
+          end: function () { return '+=' + scrollDistance(); },
           scrub: cfg.scrub,
           anticipatePin: cfg.anticipatePin,
-          invalidateOnRefresh: true
+          invalidateOnRefresh: true,
+          onRefreshInit: layout
         }
       });
 
-      tl.to(track, { y: function () { return -distance(); }, duration: 1 }, 0);
-
-      cards.forEach(function (card, i) {
-        var z = Number(card.dataset.z) || 0;
-        tl.fromTo(
-          card,
-          { rotateY: cfg.from.rotateY, z: z + cfg.from.zOffset, scale: cfg.from.scale, opacity: cfg.from.opacity },
-          { rotateY: cfg.to.rotateY, z: z, scale: cfg.to.scale, opacity: cfg.to.opacity, duration: cfg.cardSpan },
-          (i / (n - 1)) * (1 - cfg.cardSpan)
-        );
-      });
-
-      return function () { root.classList.remove('is-pinned'); };
+      return function () {
+        root.classList.remove('is-pinned');
+        cards.forEach(function (card) { card.style.transform = ''; });
+        gsap.set(drum, { clearProps: 'transform' });
+      };
     });
 
     // Ảnh và font tải xong có thể đổi chiều cao track.

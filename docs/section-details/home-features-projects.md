@@ -26,15 +26,19 @@ Từ 1440 trở lên nội suy tuyến tính, dưới 1440 co theo viewport (tr�
 
 ## 2. Hành vi
 
-- `>= 1280px` và cho phép chuyển động: JS thêm `.is-pinned`, ScrollTrigger pin `.fp__pin`, track đi lên theo scroll (`scrub`), mỗi card `fromTo` rotateY, z, scale, opacity. Nội suy từ hướng dẫn gallery (`HUONG-DAN-KY-THUAT.md`), thay `rotateX` bằng `rotateY` theo tham chiếu das.info.vn và frame.
+- `>= 1280px` và cho phép chuyển động: JS thêm `.is-pinned`. 14 card nằm trên một vòng tròn trong mặt phẳng YZ (bán kính `R = h(1+g) / (2 sin(π/N))`), scroll xoay cả trống quanh trục X nên card đi lên theo cung tròn. ScrollTrigger pin `.fp__pin`, quãng cuộn `0.8 × chiều cao viewport × (N−1)`.
+- Xoắn ốc: mỗi card lệch ngang `sin` theo góc trên vòng và xoay nhẹ quanh trục dọc của nó (`spiral` trong `motion.config.js`).
+- Không đổi opacity. Card ở mặt sau trống ẩn bằng `backface-visibility`.
+- Sân khấu cao đúng `100svh`. Hộp nội dung giữ kích thước frame khi viewport cao 900, thấp hơn thì co lại (cách 40px mỗi mép) để CTA luôn nằm trong màn hình.
 - Dưới 1280px, giảm chuyển động, JS tắt hoặc thiếu GSAP: xếp dọc, không pin.
-- Ngưỡng 1280px thay 1024px của hướng dẫn gốc, để trùng mốc bố cục của dự án (`ĐỀ XUẤT`).
+- Cơ chế theo `HUONG-DAN-KY-THUAT.md` bản Drum Gallery (thay bản cột thẳng trước đó). Ngưỡng 1280px thay 1024px (`ĐỀ XUẤT`).
 
 ## 3. Chênh lệch và việc còn mở
 
 | Mục | Trạng thái |
 |---|---|
-| Kích thước card, offset `x`, độ sâu `z`, góc nghiêng, khoảng chồng | `ĐỀ XUẤT`. Frame chỉ có ảnh chụp tham chiếu, không có thông số từng card. Chỉnh trong `motion.config.js` và `--fp-card-w` |
+| Kích thước card, biên độ xoắn, góc xoay, khoảng hở | `ĐỀ XUẤT`. Frame chỉ có ảnh chụp tham chiếu, không có thông số từng card. Chỉnh trong `motion.config.js` và `--fp-card-w` |
+| Đoạn mô tả | Frame qua MCP (2221:375, 2295:339) ghi "Sáng tạo ở Việt Nam giống như việc cắm sạc lỏng...". Ảnh chụp Figma người dùng gửi ngày 2026-11-11 ghi "Sáng tạo ở Việt Nam chưa bao giờ thiếu nguồn năng lượng...". Đang giữ bản frame, chờ xác nhận bản đúng |
 | Nền wireframe | `TODO(asset)`: frame chỉ có ảnh chụp, chưa có file SVG (`ASSETS.md`, `deco.wireframe`) |
 | Tên, danh mục, alt của 14 project | `pending` (D-20), alt ghi `TODO(content)` |
 | Trùng với `home-showcase.md` | Frame "Features projects" cùng tiêu đề "Thành quả sáng tạo" với spec `home.showcase`. Chờ người dùng xác nhận gộp hay giữ riêng |

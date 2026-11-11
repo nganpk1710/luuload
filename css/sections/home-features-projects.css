@@ -89,21 +89,23 @@
   transform: translateY(var(--space-4));
 }
 
-/* ---------- Lớp 2: pinned (>= 1280px, JS bật) ---------- */
+/* ---------- Lớp 2: pinned, gallery dạng trống quay 3D (>= 1280px, JS bật) ---------- */
 
 .fp.is-pinned .fp__pin {
   height: var(--fp-stage-h);
   overflow: hidden;
 }
 
-/* Hộp nội dung theo Figma: cao cố định, canh giữa dọc cộng độ lệch, tiêu đề trên, mô tả và CTA dưới. */
+/* Hộp nội dung theo Figma: canh giữa dọc cộng độ lệch, tiêu đề trên, mô tả và CTA dưới.
+   Viewport thấp hơn frame (900): hộp co lại để CTA luôn nằm trong màn hình. */
 .fp.is-pinned .fp__content {
+  --fp-content-h-eff: min(var(--fp-content-h), calc(var(--fp-stage-h) - 2 * var(--space-10)));
   position: absolute;
   z-index: 1;
   left: var(--fp-pad-l);
-  top: calc(50% + var(--fp-dy) - var(--fp-content-h) / 2);
+  top: calc(50% + var(--fp-dy) - var(--fp-content-h-eff) / 2);
   width: var(--fp-content-w);
-  height: var(--fp-content-h);
+  height: var(--fp-content-h-eff);
   justify-content: space-between;
   gap: 0;
   padding: 0;
@@ -118,24 +120,51 @@
   max-width: none;
 }
 
-/* Khung gallery: neo mép phải, cao bằng sân khấu, cắt phần tràn như frame (overflow-clip). */
+/* Khung gallery: neo mép phải, cắt phần tràn như frame (overflow-clip). Perspective nằm ở đây. */
 .fp.is-pinned .gallery {
   position: absolute;
   top: 0;
   right: 0;
   width: var(--fp-gallery-w);
   height: 100%;
+  perspective: var(--fp-perspective);
 }
 
+/* Track là tâm của trống: kích thước 0, đặt giữa khung. */
 .fp.is-pinned .gallery__track {
-  padding: var(--fp-stage-h) 0 calc(var(--fp-stage-h) / 2);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: 0;
+  height: 0;
+  padding: 0;
+  gap: 0;
   transform-style: preserve-3d;
   will-change: transform;
 }
 
+/* Card neo vào tâm trống. Vị trí và góc do JS gán inline. Không đổi opacity (yêu cầu thiết kế). */
 .fp.is-pinned .card {
-  margin-left: var(--x, 0);
-  will-change: transform, opacity;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--fp-card-w);
+  height: var(--fp-card-h);
+  margin: calc(var(--fp-card-h) / -2) 0 0 calc(var(--fp-card-w) / -2);
+  transform-origin: 50% 50%;
+  backface-visibility: hidden; /* card ở mặt sau trống thì ẩn */
+  will-change: transform;
+}
+
+.fp.is-pinned .card figure,
+.fp.is-pinned .card img {
+  width: 100%;
+  height: 100%;
+}
+
+.fp.is-pinned .card img {
+  aspect-ratio: auto;
 }
 
 /* TODO(asset): nền wireframe (ASSETS.md deco.wireframe). Frame Figma chỉ có ảnh chụp tham chiếu, chưa có file SVG. */
