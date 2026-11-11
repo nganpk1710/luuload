@@ -1,0 +1,104 @@
+/*
+ * css/sections/home-hashtag.css. Section home.hashtag. Frame Figma 1920 (2155:1230): hai hàng cao 144,
+ * hàng 1 ở y 81, hàng 2 ở y 256, tổng cao 480. Mọi số đo nhân --ht-u (sàn 0.5px để mobile không quá nhỏ).
+ */
+.ht {
+  background: var(--color-paper);
+  overflow: hidden;
+}
+
+.ht__stage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(31 * var(--ht-u));
+  padding-block: calc(81 * var(--ht-u)) calc(80 * var(--ht-u));
+}
+
+.ht__row {
+  overflow: hidden;
+}
+
+.ht__row.is-static {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ht__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  will-change: transform;
+}
+
+.ht__item {
+  flex: none;
+  height: calc(144 * var(--ht-u));
+  margin-right: calc(var(--g, 32) * var(--ht-u));
+}
+
+/* Khoảng cách sau mỗi item theo frame (cuối bộ = khoảng cách vòng lặp). Hàng 1 có 6 item, hàng 2 có 5. */
+.ht__row--1 { padding-left: calc(35 * var(--ht-u)); }
+.ht__row--1 .ht__item:nth-child(6n + 1) { --g: 27; }
+.ht__row--1 .ht__item:nth-child(6n + 2) { --g: 32; }
+.ht__row--1 .ht__item:nth-child(6n + 3) { --g: 18; }
+.ht__row--1 .ht__item:nth-child(6n + 4) { --g: 36; }
+.ht__row--1 .ht__item:nth-child(6n + 5) { --g: 18; }
+.ht__row--1 .ht__item:nth-child(6n + 6) { --g: 27; }
+.ht__row--2 .ht__item:nth-child(5n + 1) { --g: 32; }
+.ht__row--2 .ht__item:nth-child(5n + 2) { --g: 19; }
+.ht__row--2 .ht__item:nth-child(5n + 3) { --g: 32; }
+.ht__row--2 .ht__item:nth-child(5n + 4) { --g: 32; }
+.ht__row--2 .ht__item:nth-child(5n + 5) { --g: 32; }
+
+.ht__shape img {
+  display: block;
+  width: calc(144 * var(--ht-u));
+  height: calc(144 * var(--ht-u));
+}
+
+.ht__pill {
+  --bw: 10;
+  --c: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(var(--w) * var(--ht-u));
+  border: calc(var(--bw) * var(--ht-u)) solid var(--c);
+  border-radius: var(--radius-pill);
+  padding-inline: calc((var(--w) - 2 * var(--bw) - var(--inner)) / 2 * var(--ht-u));
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.ht__pill[data-tone="orange"] { --c: var(--color-orange); }
+.ht__pill[data-tone="sky"] { --c: var(--color-sky); }
+
+/* w = rộng khung, inner = rộng vùng nội dung (icon, chữ, icon), bw = độ dày viền. Số đo từ frame. */
+.ht__pill--sang { --w: 426; --bw: 8; --inner: 345; }
+.ht__pill--dna { --w: 429; --inner: 345; }
+.ht__pill--khongan { --w: 429; --inner: 345; }
+.ht__pill--van { --w: 426; --inner: 373; }
+.ht__pill--annen { --w: 562; --bw: 8; --inner: 464; }
+.ht__pill--tien {
+  --w: 701;
+  justify-content: center;
+  gap: calc(155 * var(--ht-u));
+  padding-inline: 0;
+}
+
+.ht__text {
+  font-family: var(--font-display);
+  font-size: var(--ht-fs);
+  line-height: normal;
+  white-space: nowrap;
+  text-box: trim-both cap alphabetic;
+}
+
+.ht__cross {
+  flex: none;
+  width: calc(36 * var(--ht-u));
+  height: calc(36 * var(--ht-u));
+}

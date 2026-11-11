@@ -96,3 +96,18 @@ Nguồn: `Images/Projects Images/*.jpg`. Đã crop giữa 4:5 (`object-fit: cove
 | Ngày | Thay đổi |
 |---|---|
 | 2026-11-10 | Thêm logo, graphic còn thiếu, ảnh cần xuất, theo thiết kế trang chủ 1920 |
+
+
+## Asset section USP, hashtag, community (2026-11-11)
+
+Nguồn: `Assets/Graphic Element/for 1920px/`. SVG giữ nguyên, không sửa màu (D-16). Chữ trong SVG panel đã outline, alt lấy từ `js/content/home.js`.
+
+| ID | File | Dùng ở | Ghi chú |
+|---|---|---|---|
+| `usp.vision` / `usp.mission` / `usp.core-value` | `images/usp/vision.svg`, `mission.svg`, `core-value.svg` (640×654) | `home.usp` | TODO(figma): SVG Vision ghi "tầm nhín", cần xác nhận |
+| `usp.badge-blue` / `usp.badge-red` | `images/usp/badge-blue.svg`, `badge-red.svg` (73×71) | `home.usp` | |
+| `hashtag.circles-blue` / `star-yellow` / `plus-red` | `images/hashtag/*.svg` (144×144) | `home.hashtag` | Gồm cả nền tròn |
+| `deco.crosshair` | `images/hashtag/crosshair.svg` (36×36) | `home.hashtag`, `home.community` | Thay cho `TODO(asset)` cũ |
+| `community.shapes` | `images/community/shapes.svg` (218×58) | `home.community` | Cụm phải (Figma 2227:567) chưa có file, dùng lại file này, TODO(figma) |
+| `community.group.*` | `images/community/art-craft.svg`, `life-flavor.svg`, `flow-sacred.svg`, `architecture-landscape.svg` (441×520) | `home.community` | Tên nhóm nằm trong SVG |
+| (không dùng) | `hastag/#*.png` | | Pill dựng bằng CSS (chữ thật, marquee cần pill nguyên vẹn; PNG bị cắt) |

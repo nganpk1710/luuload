@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | Section ID | `home.hashtag` |
-| Trạng thái layout | `CHỜ G0` |
+| Trạng thái layout | `ĐÃ DỰNG 1920` (chưa có frame 1440) |
 | Trạng thái copy | `PENDING` (D-22: chờ xác nhận dấu) |
 | Liên quan | `MOTION.md` mục 7, `COMPONENTS.md` mục 3.5 |
 
@@ -89,3 +89,9 @@ Ghi chú: hashtag không dấu theo thiết kế. Nếu muốn có dấu, cần 
 | Ngày | Thay đổi |
 |---|---|
 | 2026-11-10 | Tạo spec từ thiết kế 1920 |
+
+## Triển khai (2026-11-11)
+
+Code: `js/sections/home-hashtag.js`, `css/sections/home-hashtag.css`, token trong `css/tokens.css` (khối "Sections home.usp, home.hashtag, home.community"). Đối chiếu frame 1920: chiều cao section khớp (USP 1368, hashtag 480, community 1245). 1440: `TODO(figma 1440)`, hiện co theo `--u1920`. Dưới 1280: xếp dọc [ĐỀ XUẤT].
+
+Marquee: hai hàng ngược chiều, `LL.motion.marquee.speedPxPerSec` (60, đề xuất), hover dừng trong `duration.base`, dừng khi tab ẩn hoặc ngoài viewport, giảm chuyển động thì hàng tĩnh cuộn tay. Khoảng cách giữa item theo frame (18 đến 36px); khoảng cách vòng lặp = khoảng cách cuối bộ.

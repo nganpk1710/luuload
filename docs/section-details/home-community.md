@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | Section ID | `home.community` |
-| Trạng thái layout | `CHỜ G0` |
+| Trạng thái layout | `ĐÃ DỰNG 1920` (chưa có frame 1440) |
 | Trạng thái copy | `PENDING` (D-21: đoạn mô tả lặp hai bên) |
 | Liên quan | `MOTION.md` mục 4, `ASSETS.md` (`deco.community-shapes`, `deco.crosshair`) |
 
@@ -89,3 +89,9 @@ Ghi chú về chữ hoa: CTA ở đây viết "Kết Nối Ngay" trong thiết k
 | Ngày | Thay đổi |
 |---|---|
 | 2026-11-10 | Tạo spec từ thiết kế 1920 |
+
+## Triển khai (2026-11-11)
+
+Code: `js/sections/home-community.js`, `css/sections/home-community.css`, token trong `css/tokens.css` (khối "Sections home.usp, home.hashtag, home.community"). Đối chiếu frame 1920: chiều cao section khớp (USP 1368, hashtag 480, community 1245). 1440: `TODO(figma 1440)`, hiện co theo `--u1920`. Dưới 1280: xếp dọc [ĐỀ XUẤT].
+
+Thẻ nhóm: hover lift 8px (MOTION.md mục 8), chưa là liên kết (D-13). Đoạn mô tả bên phải là `aria-hidden` (D-21).

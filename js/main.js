@@ -38,6 +38,12 @@
     main.appendChild(hero);
     var projects = LL.sections.HomeFeaturesProjects();
     main.appendChild(projects);
+    var usp = LL.sections.HomeUsp();
+    var hashtag = LL.sections.HomeHashtag();
+    var community = LL.sections.HomeCommunity();
+    main.appendChild(usp);
+    main.appendChild(hashtag);
+    main.appendChild(community);
 
     body.appendChild(skip);
     body.appendChild(header);
@@ -45,6 +51,9 @@
 
     LL.sections.playHomeHero(hero, header);
     LL.sections.initHomeFeaturesProjects(projects);
+    LL.sections.initHomeUsp(usp);
+    LL.sections.initHomeHashtag(hashtag);
+    LL.sections.initHomeCommunity(community);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

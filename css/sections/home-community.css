@@ -1,0 +1,197 @@
+/*
+ * css/sections/home-community.css. Section home.community. Frame Figma 1920 (2155:1323), cao 1245.
+ * --x và --y là toạ độ trong frame 1920 (không đơn vị), nhân --u1920 (tokens.css).
+ */
+.cm {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.cm__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-8) var(--space-4) var(--space-12);
+  text-align: center;
+}
+
+.cm__shapes img {
+  display: block;
+  width: 120px;
+  height: auto;
+}
+
+.cm__shapes--r,
+.cm__cross,
+.cm__lead--r {
+  display: none;
+}
+
+.cm__eyebrow {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--cm-fs-eyebrow);
+  text-transform: uppercase;
+}
+
+.cm__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.cm__top { font-size: var(--cm-fs-top); }
+.cm__main { font-size: var(--cm-fs-main); }
+
+.cm__lead {
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--cm-fs-body);
+  line-height: 1.4;
+}
+
+.cm__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  width: 100%;
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cm__card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: translate var(--motion-base) var(--ease-playful);
+}
+
+@media (min-width: 600px) {
+  .cm__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (hover: hover) {
+  .cm__card:hover img {
+    translate: 0 calc(-1 * var(--cm-card-lift));
+  }
+}
+
+@media (min-width: 1024px) {
+  .cm__cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---------- >= 1280: bố cục tuyệt đối theo frame ---------- */
+@media (min-width: 1280px) {
+  .cm__stage {
+    position: relative;
+    display: block;
+    max-width: 1920px;
+    height: calc(1245 * var(--u1920));
+    margin-inline: auto;
+    padding: 0;
+    text-align: left;
+  }
+
+  .cm__shapes--r,
+  .cm__cross,
+  .cm__lead--r {
+    display: block;
+  }
+
+  .cm__shapes,
+  .cm__eyebrow,
+  .cm__top,
+  .cm__main,
+  .cm__lead,
+  .cm__cross,
+  .cm__cta,
+  .cm__cards {
+    position: absolute;
+    left: calc(var(--x) * var(--u1920));
+    top: calc(var(--y) * var(--u1920));
+  }
+
+  .cm__title { display: contents; }
+
+  .cm__top,
+  .cm__main,
+  .cm__eyebrow,
+  .cm__lead {
+    margin: 0;
+    white-space: nowrap;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .cm__shapes img { width: calc(217.305 * var(--u1920)); }
+  .cm__shapes--l { --x: 32; --y: 78; }
+  /* TODO(figma): cụm hình phải (2227:567) chưa có file riêng. Dùng lại shapes.svg, lệch xuống theo ảnh chụp. */
+  .cm__shapes--r { --x: 1676; --y: 87; }
+
+  .cm__eyebrow { --x: 829; --y: 80; }
+  .cm__top { --x: 771; --y: 164; }
+  .cm__main { --x: 514; --y: 304; }
+
+  .cm__lead {
+    --y: 323;
+    width: calc(362 * var(--u1920));
+    white-space: normal;
+  }
+
+  .cm__lead--l { --x: 32; }
+  .cm__lead--r { --x: 1543; }
+
+  .cm__cross {
+    --y: 490;
+    display: flex;
+    width: calc(71 * var(--u1920));
+    height: calc(36 * var(--u1920));
+  }
+
+  .cm__cross img {
+    width: calc(36 * var(--u1920));
+    height: calc(36 * var(--u1920));
+  }
+
+  .cm__cross img + img { margin-left: calc(-1 * var(--u1920)); }
+  .cm__cross--l { --x: 32; }
+  .cm__cross--r { --x: 1819; }
+
+  .cm__cta {
+    --x: 960;
+    --y: 485;
+    translate: -50% 0;
+  }
+
+  .cm__cards {
+    --x: 32;
+    --y: 631;
+    display: block;
+    width: calc(1857 * var(--u1920));
+    margin: 0;
+  }
+
+  .cm__card {
+    position: absolute;
+    top: 0;
+    left: calc(var(--cx) * var(--u1920));
+    width: calc(441 * var(--u1920));
+  }
+
+  .cm__card:nth-child(1) { --cx: 0; }
+  .cm__card:nth-child(2) { --cx: 472; }
+  .cm__card:nth-child(3) { --cx: 944; }
+  .cm__card:nth-child(4) { --cx: 1416; }
+}

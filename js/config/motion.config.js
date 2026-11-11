@@ -52,6 +52,11 @@
     }
   };
 
+  // Marquee hashtag (home.hashtag). Hai hàng ngược chiều. Tốc độ [ĐỀ XUẤT], chưa có trong Figma.
+  var marquee = {
+    speedPxPerSec: 60
+  };
+
   // Pinned gallery dạng xoắn ốc 3D (home.features-projects). Cơ chế theo HUONG-DAN-KY-THUAT.md (Spiral Gallery)
   // do người dùng gửi. 14 card nằm trên một đường xoắn ốc quanh trục dọc, scroll làm xoắn vừa dâng vừa xoay.
   // Tham số tính hình học: R từ chiều rộng card, P từ chiều cao card. Toàn bộ là [ĐỀ XUẤT], chỉnh khi xem trên thiết bị.
@@ -112,6 +117,7 @@
     viewport: viewport,
     cta: cta,
     gallery: gallery,
+    marquee: marquee,
     media: media
   };
   LL.resolveDuration = resolve;

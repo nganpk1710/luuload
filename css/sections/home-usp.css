@@ -1,0 +1,151 @@
+/*
+ * css/sections/home-usp.css. Section home.usp. Frame Figma 1920 (2155:1423), cao 1368.
+ * --x và --y là toạ độ trong frame 1920 (không đơn vị), đổi sang px bằng --u1920 (tokens.css).
+ */
+.usp {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.usp__stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-8) var(--space-4) 0;
+}
+
+.usp__badges {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.usp__badges img {
+  width: 48px;
+  height: auto;
+}
+
+.usp__h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--usp-fs-h2);
+  line-height: 1.05;
+}
+
+.usp__a {
+  font-size: var(--usp-fs-aside);
+}
+
+.usp__paren {
+  display: inline-block;
+}
+
+.usp__paren--close {
+  scale: -1 1; /* ")" = "(" lật ngang, đúng như frame */
+}
+
+.usp__text {
+  margin: 0;
+  max-width: 34ch;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--usp-fs-body);
+  line-height: var(--usp-lh-body);
+}
+
+.usp__panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 calc(-1 * var(--space-4));
+  padding: 0;
+  list-style: none;
+}
+
+.usp__panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .usp__panels {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- >= 1280: bố cục tuyệt đối theo frame ---------- */
+@media (min-width: 1280px) {
+  .usp__stage {
+    position: relative;
+    display: block;
+    max-width: 1920px;
+    height: calc(1368 * var(--u1920));
+    margin-inline: auto;
+    padding: 0;
+  }
+
+  .usp__badges,
+  .usp__t,
+  .usp__a,
+  .usp__text,
+  .usp__cta {
+    position: absolute;
+    left: calc(var(--x) * var(--u1920));
+    top: calc(var(--y) * var(--u1920));
+  }
+
+  .usp__h2 {
+    display: contents;
+  }
+
+  .usp__t,
+  .usp__a,
+  .usp__text {
+    margin: 0;
+    white-space: nowrap;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .usp__badges {
+    --x: 34; /* tâm 70.45, rộng 72.9 */
+    --y: 80;
+    gap: calc(9.4 * var(--u1920));
+  }
+
+  .usp__badges img {
+    width: calc(72.903 * var(--u1920));
+  }
+
+  .usp__t--lead { --x: 504; --y: 80; }
+  .usp__t--tail { --x: 504; --y: 215; }
+  .usp__t--cho { --x: 1535; --y: 80; }
+  .usp__paren { --x: 1086; --y: 80; }
+  .usp__paren--close { --x: 1480; }
+  .usp__a--1 { --x: 1127; --y: 80; }
+  .usp__a--2 { --x: 1123; --y: 145; }
+
+  .usp__text {
+    white-space: normal;
+  }
+
+  .usp__text--left { --x: 504; --y: 387; width: calc(446 * var(--u1920)); max-width: none; }
+  .usp__text--right { --x: 1450; --y: 387; width: calc(450 * var(--u1920)); max-width: none; }
+  .usp__cta { --x: 504; --y: 516; }
+
+  /* CTA của frame này nhỏ hơn mặc định (37.9px so với 40px). */
+  .usp__cta .cta {
+    --cta-h: calc(37.905 * var(--u1920));
+    --knob-size: calc(37.905 * var(--u1920));
+    --cta-px: calc(22.743 * var(--u1920));
+    --cta-w: calc(155.41 * var(--u1920));
+    --fs-button: calc(17.057 * var(--u1920));
+  }
+
+  .usp__panels {
+    position: absolute;
+    left: 0;
+    top: calc(634 * var(--u1920));
+    width: 100%;
+    margin: 0;
+  }
+}

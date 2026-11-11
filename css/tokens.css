@@ -320,3 +320,42 @@
     --fp-card-w: clamp(220px, calc(220px + (100vw - 1440px) * 0.16667), 300px);
   }
 }
+
+/*
+ * Sections home.usp, home.hashtag, home.community. Nguồn: Figma 1920 (2155:1423, 2155:1230, 2155:1323).
+ * Chưa có frame 1440 (TODO(figma 1440)): từ 1280 trở lên co theo --u1920 (1px của frame 1920 = 100vw / 1920,
+ * trần 1920). Dưới 1280: xếp dọc, cỡ chữ theo clamp [ĐỀ XUẤT].
+ * Figma Variables của frame hashtag trả rỗng: màu cam và xanh da trời lấy từ giá trị trong frame.
+ */
+:root {
+  --color-orange: #ff6932; /* viền hashtag #Khongankhongngu, #tienlenvietnam; chờ đưa vào Figma Variables */
+  --color-sky: #32bbff;    /* viền hashtag #DNAVietLenSong, #annenlamra; chờ đưa vào Figma Variables */
+  --u1920: calc(min(100vw, 1920px) / 1920);
+
+  --usp-fs-h2: clamp(40px, 11vw, 100px);
+  --usp-fs-aside: calc(var(--usp-fs-h2) * 0.343);
+  --usp-fs-body: clamp(16px, 2.2vw, 20px);
+  --usp-lh-body: 1.4;
+
+  --ht-u: max(var(--u1920), 0.5px);
+  --ht-fs: max(calc(24 * var(--ht-u)), 14px);
+
+  --cm-fs-eyebrow: 14px;
+  --cm-fs-top: clamp(48px, 12vw, 100px);
+  --cm-fs-main: clamp(72px, 18vw, 180px);
+  --cm-fs-body: clamp(16px, 2.2vw, 20px);
+  --cm-card-lift: 8px; /* MOTION.md mục 8 */
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --usp-fs-h2: calc(140 * var(--u1920));
+    --usp-fs-aside: calc(48 * var(--u1920));
+    --usp-fs-body: calc(24 * var(--u1920));
+    --usp-lh-body: calc(32 * var(--u1920));
+    --cm-fs-eyebrow: calc(16 * var(--u1920));
+    --cm-fs-top: calc(100 * var(--u1920));
+    --cm-fs-main: calc(180 * var(--u1920));
+    --cm-fs-body: calc(24 * var(--u1920));
+  }
+}

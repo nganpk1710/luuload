@@ -28,6 +28,18 @@
   font-display: swap;
 }
 
+/* Reveal mờ dần dùng chung: section có class is-pending, phần tử có data-reveal="fade". */
+[data-reveal="fade"] {
+  transition:
+    opacity var(--motion-reveal) var(--ease-out) var(--reveal-delay, 0ms),
+    transform var(--motion-reveal) var(--ease-out) var(--reveal-delay, 0ms);
+}
+
+.is-pending [data-reveal="fade"] {
+  opacity: 0;
+  transform: translateY(var(--space-4));
+}
+
 *,
 *::before,
 *::after {
