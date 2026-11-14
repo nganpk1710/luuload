@@ -2,6 +2,8 @@
 
 > Trách nhiệm của file này: đọc file nào theo việc, nguồn nào thắng khi xung đột, bảng quyết định, deliverable, quy tắc đồng bộ. Không chứa chi tiết thiết kế.
 
+> Thư viện component React của Lưu Load (repo riêng, không áp dụng luật "không build" ở D-06): https://github.com/nganpk1710/design-system. Khi dựng component dùng chung, đọc `INSTRUCTION.md` ở repo đó.
+
 ## 1. Đọc theo nhiệm vụ
 
 | Nhiệm vụ | Đọc theo thứ tự |
